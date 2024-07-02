@@ -35,7 +35,7 @@ your repo access and to practice PR'ing with your team *before* you start
 coding!
 
 - Axel: [GitHub](https://github.com/ScaxCodes) / [LinkedIn](https://www.linkedin.com/in/axel-scheithauer/)
-- Teammate name #2: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
 
-   ...
+- Zee : [GitHub](https://github.com/efezinoidisi) / [LinkedIn](https://linkedin.com/in/endurance-idisi)
+
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
