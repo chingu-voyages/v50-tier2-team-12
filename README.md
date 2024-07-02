@@ -38,4 +38,6 @@ coding!
 
 - Zee : [GitHub](https://github.com/efezinoidisi) / [LinkedIn](https://linkedin.com/in/endurance-idisi)
 
+- Mary Richelle : [GitHub](https://github.com/MaryRichelle) / [LinkedIn](https://www.linkedin.com/in/mary-richelle-mr-dev/)
+
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
