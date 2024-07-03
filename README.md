@@ -40,4 +40,4 @@ coding!
 
 - Mary Richelle : [GitHub](https://github.com/MaryRichelle) / [LinkedIn](https://www.linkedin.com/in/mary-richelle-mr-dev/)
 
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- Huda Mabkhoot: [GitHub](https://github.com/hudamabkhoot/) / [LinkedIn](https://www.linkedin.com/in/huda-mabkhoot/)
