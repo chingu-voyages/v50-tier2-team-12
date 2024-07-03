@@ -41,3 +41,5 @@ coding!
 - Mary Richelle : [GitHub](https://github.com/MaryRichelle) / [LinkedIn](https://www.linkedin.com/in/mary-richelle-mr-dev/)
 
 - Huda Mabkhoot: [GitHub](https://github.com/hudamabkhoot/) / [LinkedIn](https://www.linkedin.com/in/huda-mabkhoot/)
+
+- Rodrigo Díaz Casco: [GitHub](https://github.com/rodrigodiazcasco) / [LinkedIn](https://www.linkedin.com/in/rodrigodiazcascoux/)
