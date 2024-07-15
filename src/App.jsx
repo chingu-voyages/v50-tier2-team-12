@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { Outlet } from 'react-router-dom';
+import MobileNavbar from './components/navigation/MobileNavbar';
 
 function App() {
   return (
     <>
-      <h1 className="text-red-500">"Chingu Voyage - Best Team"</h1>
+      <header>
+        <MobileNavbar />
+      </header>
+      <main className='mb-24 md:mb-0'>
+        <Outlet />
+      </main>
     </>
   );
 }
