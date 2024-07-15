@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function useFetch(url) {
   const [data, setData] = useState([]);
@@ -7,28 +6,35 @@ export function useFetch(url) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsError(false);
-
     const controller = new AbortController();
+    const signal = controller.signal;
 
-    fetch(url)
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
+    const fetchData = async () => {
+      setIsLoading(true);
+      setIsError(false);
+
+      try {
+        const response = await fetch(url, { signal });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return Promise.reject(res);
-      })
-      .then(setData)
-      .catch((e) => {
-        if (e.name === "AbortError") return;
 
-        setIsError(true);
-      })
-      .finally(() => {
-        if (controller.signal.aborted) return;
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted"); // Just for debugging
+        } else {
+          setIsError(true);
+          console.error("Fetch error:", error); // Just for debugging
+        }
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+
+    fetchData();
 
     return () => {
       controller.abort();

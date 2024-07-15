@@ -1,5 +1,6 @@
 import { useFetch } from "../useFetch";
 import "../table.css";
+import { CategoryTable } from "./CategoryTable";
 
 export function Menu() {
   const { data, isLoading, isError } = useFetch(
@@ -8,39 +9,19 @@ export function Menu() {
   if (isLoading) return "Loading";
   if (isError) return "Error";
 
+  // Just for debugging
+  console.log(data);
+
   return (
-    <table>
-      <caption>Category BBQS</caption>
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Price</th>
-          <th>Rate</th>
-          <th>Country</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-      </thead>
-      {data.bbqs.map((item) => {
-        return (
-          <tbody key={item.id}>
-            <tr>
-              <td>
-                <img src={item.img} />
-              </td>
-              <td>{item.name}</td>
-              <td>{item.dsc}</td>
-              <td>{item.price}</td>
-              <td>{item.rate}</td>
-              <td>{item.country}</td>
-              <td>{item.latitude}</td>
-              <td>{item.longitude}</td>
-            </tr>
-          </tbody>
-        );
+    <div>
+      {Object.keys(data).map((category) => {
+        // Handle edge-case for this category, it does not contain an array of dishes
+        if (category === "pagination") return;
+        // Handle edge-case for those categories, they contain duplicated data
+        if (category === "best-foods" || category === "our-foods") return;
+
+        return <CategoryTable key={category} data={data} category={category} />;
       })}
-    </table>
+    </div>
   );
 }
