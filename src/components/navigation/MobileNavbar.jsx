@@ -3,7 +3,7 @@ import { Icons } from '../Icons';
 
 export default function Navbar() {
   return (
-    <nav className='grid grid-cols-4 fixed bottom-0 w-full bg-white py-2 md:hidden font-work-sans px-5 gap-1 items-end'>
+    <nav className='grid grid-cols-4 fixed bottom-0 w-full bg-white py-2 md:hidden font-work-sans px-5 gap-1 items-end z-[1000]'>
       {navigationMenu.map((navItem) => (
         <NavItem key={navItem.title} {...navItem} />
       ))}
