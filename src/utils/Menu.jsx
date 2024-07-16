@@ -1,5 +1,5 @@
-import { useFetch } from "../utils/useFetch";
-import "../table.css";
+import { useFetch } from "./useFetch";
+import "./table.css";
 import { CategoryTable } from "./CategoryTable";
 
 export function Menu() {
