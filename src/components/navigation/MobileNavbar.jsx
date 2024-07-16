@@ -13,9 +13,19 @@ export default function Navbar() {
 
 function NavItem({ title, href, Icon }) {
   return (
-    <NavLink to={href} className={'flex flex-col items-center gap-1'}>
-      {Icon ? <Icon className={'text-[#1C1B1F]'} /> : null}
-      <span className='capitalize font-medium text-sm'>{title}</span>
+    <NavLink to={href} className={`flex flex-col items-center gap-1`}>
+      {({ isActive }) => (
+        <>
+          <Icon className={`${isActive ? 'active-link' : ''}`} />
+          <span
+            className={`${
+              isActive ? 'text-primary-violet' : 'text-grey'
+            } capitalize font-medium text-sm`}
+          >
+            {title}
+          </span>
+        </>
+      )}
     </NavLink>
   );
 }
@@ -28,13 +38,13 @@ const navigationMenu = [
   },
   {
     title: 'map',
-    href: '/',
+    href: '/map',
     Icon: Icons.map,
   },
 
   {
     title: 'credits',
-    href: '/',
+    href: '/credits',
     Icon: Icons.circle,
   },
   {

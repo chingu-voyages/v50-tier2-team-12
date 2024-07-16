@@ -7,7 +7,7 @@ function App() {
       <header>
         <MobileNavbar />
       </header>
-      <main className='mb-24 md:mb-0'>
+      <main className='px-5 pt-5 mb-24 md:mb-0'>
         <Outlet />
       </main>
     </>
