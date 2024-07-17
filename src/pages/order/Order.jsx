@@ -19,7 +19,9 @@ export default function OrderPage() {
   );
 
   const handleOrder = () => {
+    // temporary user success
     console.log(courierTip, total, orders);
+    window.alert('order sent!');
   };
 
   return (

@@ -37,7 +37,7 @@ export default function CourierTipModal({ setCourierTip, setIsOpen, isOpen }) {
           name='tip-amount'
           value={tipAmount}
           onChange={(event) => setTipAmount(event.target.value)}
-          className='w-full border rounded-lg border-primary-violet h-10'
+          className='w-full border rounded-lg border-primary-violet h-10 outline-none focus-visible:outline-primary-violet/50'
         />
       </label>
     </ModalWrapper>
