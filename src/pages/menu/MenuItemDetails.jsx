@@ -1,20 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, useLoaderData } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
 import MenuItemToCart from './MenuItemToCart';
-import { fetchMenuItemData } from '../../utils/MenuData';
-
-export const loader = async ({ params }) => {
-  const data = await fetchMenuItemData(params.id);
-  return data;
-};
-
 
 export default function MenuItemDetails() {
     const { id } = useParams();
-    const menuItemData = useLoaderData();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
+    const [menuItemData, setMenuItemData] = useState('');
     const [orderSummary, setOrderSummary] = useState({
         itemName: '',
         quantity: 0

@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 import { Icons } from '../../components/Icons';
-import { useNavigate, useParams, Link, useLoaderData } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { fetchMenuData } from '../../utils/MenuData';
-
-export const loader = async ({ params }) => {
-      const data = await fetchMenuData(params.restaurantName);
-      return data;
-  };
-
 
 export default function Menu() {
     const { restaurantName } = useParams();
-    const menuData = useLoaderData();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const [searchValue, setSearchValue] = useState('');
-
+    const [menuData, setMenuData] = useState('');
 
     const filteredMenu = menuData.filter(item =>
         item.dsc.toLowerCase().includes(searchValue.toLowerCase())
