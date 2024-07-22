@@ -45,26 +45,28 @@ export default function ModalWrapper({
       ref={dialogRef}
       onClose={handleClose}
     >
-      <div className='w-full h-full p-5 pb-0'>{children}</div>
-      <div className='flex gap-4 w-full px-5 pb-5'>
-        {showCancel ? (
-          <button
-            type='button'
-            onClick={handleClose}
-            className='border-1 border-primary-violet capitalize font-semibold text-xs text-primary-violet rounded-5p w-full py-2 px-5'
-          >
-            {cancelText}
-          </button>
-        ) : null}
-        {showConfirm ? (
-          <button
-            onClick={handleConfirm}
-            className='capitalize bg-primary-violet text-white text-xs font-semibold rounded-5p w-full py-2 px-5'
-          >
-            {confirmText}
-          </button>
-        ) : null}
-      </div>
+      <form method='dialog' className='w-full h-full p-5 pb-0'>
+        {children}
+        <div className='flex gap-4 w-full pb-5 items-center justify-between mt-5'>
+          {showCancel ? (
+            <button
+              type='button'
+              onClick={handleClose}
+              className='border-1 border-primary-violet capitalize font-semibold text-xs text-primary-violet rounded-5p w-full py-2 px-5 block'
+            >
+              {cancelText}
+            </button>
+          ) : null}
+          {showConfirm ? (
+            <button
+              onClick={handleConfirm}
+              className='capitalize bg-primary-violet text-white text-xs font-semibold rounded-5p w-full py-2 px-5 block'
+            >
+              {confirmText}
+            </button>
+          ) : null}
+        </div>
+      </form>
     </dialog>
   );
 }
