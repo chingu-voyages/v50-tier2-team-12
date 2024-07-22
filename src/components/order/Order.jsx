@@ -2,13 +2,6 @@ import { useOrder } from '../../contexts/OrderContext';
 import { Icons } from '../Icons';
 
 export default function OrderList({ orders }) {
-  if (!orders || orders.length === 0) {
-    return (
-      <div>
-        <p>no orders yet</p>
-      </div>
-    );
-  }
   return (
     <section className='grid gap-7 mb-20'>
       {orders.map((order) => (
