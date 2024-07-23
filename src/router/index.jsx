@@ -1,11 +1,19 @@
 import { Route } from 'react-router-dom';
 import App from '../App';
+import ErrorBoundary from '../components/ErrorBoundary';
 import Error from '../pages/error/Error';
 import Home from '../pages/home/Home';
 import Order from '../pages/order/Order';
+import { fetchMenus } from '../utils/utils';
 
 const routes = (
-  <Route path='/' element={<App />}>
+  <Route
+    path='/'
+    element={<App />}
+    id={'menu'}
+    loader={fetchMenus}
+    errorElement={ErrorBoundary}
+  >
     <Route index element={<Home />} />
     <Route path='order' element={<Order />} />
 
