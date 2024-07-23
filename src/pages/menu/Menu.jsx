@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Icons } from '../../components/Icons';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { useFetch } from '../../utils/useFetch'
+import { useRouteLoaderData } from 'react-router-dom';
+import MenuItems from '../../components/menu/menuItems'
 
 export default function Menu() {
-    const { data } = useFetch('https://menus-api.vercel.app/')
+    const data = useRouteLoaderData('menu');
     const { restaurantName } = useParams();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
@@ -33,20 +34,7 @@ export default function Menu() {
         item.dsc.toLowerCase().includes(searchValue.toLowerCase())
     );
 
-    const renderMenuItems = (menuItems) => {
-        return menuItems.map(item => (
-            <Link to={`/${restaurantName}/${item.id}`} key={item.id} >
-                <div className="flex items-center justify-between gap-10 bg-gray-100 rounded-lg py-4 px-4">
-                    <section className="flex flex-col gap-10 items-start w-1/2">
-                        <p className="font-bold">{item.dsc}</p>
-                        <p>${item.price}</p>
-                    </section>
-                    <img src={item.img} className="w-full max-w-32 h-auto rounded-lg object-cover" alt="image"/>
-                </div>
-            </Link>
-        ));
-    };
-
+    
     return (
         <div className="max-w-md mx-auto mx-4">
             <section className="grid grid-cols-3 gap-4 mt-5 mb-2 items-center">
@@ -78,7 +66,7 @@ export default function Menu() {
                     (
                         <p className="text-gray-500 text-center">No items found matching your search.</p>
                     ) : (
-                        renderMenuItems(filteredMenu.length > 0 ? filteredMenu : menuData)
+                        <MenuItems items={filteredMenu.length > 0 ? filteredMenu : menuData} restaurantName={restaurantName} />
                     )}
             </section>
         </div>

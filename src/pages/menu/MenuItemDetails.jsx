@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
-import MenuItemToCart from './MenuItemToCart';
-import { useFetch } from '../../utils/useFetch'
+import MenuItemToCart from '../../components/menu/MenuItemToCart';
+import { useRouteLoaderData } from 'react-router-dom';
 import { useOrder } from '../../contexts/OrderContext';
 
 export default function MenuItemDetails() {
-    const { data } = useFetch('https://menus-api.vercel.app/')
+    const data = useRouteLoaderData('menu');
     const { id } = useParams();
     const [orders, orderDispatch] = useOrder();
     const navigate = useNavigate();
@@ -35,28 +35,12 @@ export default function MenuItemDetails() {
 
 
     const updateOrderQuantity = (amount) => {
-        setQuantity(quantity + amount)
-    };
+      setQuantity(prevQuantity => prevQuantity + amount);
+  };
 
     const handleAddToOrder = () => {
-      if (quantity > 0 && menuItemData) {
-        const orderSummary = {
-          dsc: menuItemData.dsc,
-          id: menuItemData.id,
-          img: menuItemData.img,
-          name: menuItemData.name,
-          price: menuItemData.price,
-          quantity: quantity
-        };
-    
         console.log(`Adding ${quantity} of ${menuItemData.dsc} to order`);
-        
-        // Dispatch an action to add orderSummary to orders
-        orderDispatch({ type: 'ADD_ORDER', payload: orderSummary });
-    
-        // Reset quantity state
         setQuantity(0);
-      }
     };
   
     const handleOrderSubmit = (event) => {
