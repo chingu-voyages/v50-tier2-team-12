@@ -27,7 +27,7 @@ export default function CourierTipModal({ setCourierTip, setIsOpen, isOpen }) {
         Tip between $0.50 - $100.00
       </p>
 
-      <label className='block mb-5'>
+      <label className='block'>
         <span className='text-primary-violet text-xs md:text-sm font-medium block mb-2'>
           Tip amount
         </span>
@@ -37,7 +37,7 @@ export default function CourierTipModal({ setCourierTip, setIsOpen, isOpen }) {
           name='tip-amount'
           value={tipAmount}
           onChange={(event) => setTipAmount(event.target.value)}
-          className='w-full border rounded-lg border-primary-violet h-10 outline-none focus-visible:outline-primary-violet/50'
+          className='w-full border rounded-lg border-primary-violet h-10 outline-none focus-visible:outline-primary-violet/50 px-3'
         />
       </label>
     </ModalWrapper>
