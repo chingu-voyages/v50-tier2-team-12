@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useFetch } from '../../utils/useFetch'
@@ -38,3 +39,16 @@ export default function HomePage() {
         </div>
     );
 }
+=======
+import { useRouteLoaderData } from 'react-router-dom';
+
+export default function HomePage() {
+  const menus = useRouteLoaderData('menu');
+  console.log(menus);
+  return (
+    <>
+      <h2>homepage content here</h2>
+    </>
+  );
+}
+>>>>>>> fc42641771fd9feeef07fbe94dd50be0663f02b8
