@@ -1,33 +1,13 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
-import { useFetch } from '../../utils/useFetch'
+import { useRouteLoaderData } from 'your-route-loader'; 
 
 export default function HomePage() {
-    const { data } = useFetch('https://menus-api.vercel.app/')
-    const [restaurantMenu, setRestaurantMenu] = useState([]);
-
-    useEffect(() => {
-        const fetchMenuData = async () => {
-                let menu = [];
-                Object.keys(data).forEach(category => {
-                    Object.values(data[category]).forEach(item => {
-                        if (!menu.includes(item.name)) {
-                            menu.push(item);
-                        }
-                    });
-                });
-                setRestaurantMenu(menu);
-        };
-
-        fetchMenuData();
-
-    }, []);
-
+    const menus = useRouteLoaderData('menu');
 
     return (
         <div className="max-w-md mx-auto mx-4">
-            {restaurantMenu.map(item => (
+            {menus.map(item => (
                 <Link to={`/${item.name}`} key={item.id}>
                     <div className="flex items-center justify-between gap-10 bg-gray-100 rounded-lg py-4 px-4">
                         <section className="flex flex-col gap-10 items-start w-1/2">
@@ -39,16 +19,3 @@ export default function HomePage() {
         </div>
     );
 }
-=======
-import { useRouteLoaderData } from 'react-router-dom';
-
-export default function HomePage() {
-  const menus = useRouteLoaderData('menu');
-  console.log(menus);
-  return (
-    <>
-      <h2>homepage content here</h2>
-    </>
-  );
-}
->>>>>>> fc42641771fd9feeef07fbe94dd50be0663f02b8
