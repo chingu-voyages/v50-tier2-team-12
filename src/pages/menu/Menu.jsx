@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Icons } from '../../components/Icons';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { fetchMenuData } from '../../utils/MenuData';
+import { useFetch } from '../../utils/useFetch'
 
 export default function Menu() {
+    const { data } = useFetch('https://menus-api.vercel.app/')
     const { restaurantName } = useParams();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const [searchValue, setSearchValue] = useState('');
-    const [menuData, setMenuData] = useState('');
+    const [menuData, setMenuData] = useState([]);
+
+    useEffect(() => {
+        const fetchMenuData = async () => {
+                let menu = [];
+                Object.keys(data).forEach(category => {
+                Object.values(data[category]).forEach(item => {
+                    if (item.name === restaurantName && !menu.some(existingItem => existingItem.id === item.id)) {
+                    menu.push(item);
+                    }
+                });
+                });
+                setMenuData(menu)
+        }
+
+        fetchMenuData();
+
+}, [data]);
+
 
     const filteredMenu = menuData.filter(item =>
         item.dsc.toLowerCase().includes(searchValue.toLowerCase())

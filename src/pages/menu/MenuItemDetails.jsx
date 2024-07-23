@@ -2,42 +2,73 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
 import MenuItemToCart from './MenuItemToCart';
+import { useFetch } from '../../utils/useFetch'
+import { useOrder } from '../../contexts/OrderContext';
 
 export default function MenuItemDetails() {
+    const { data } = useFetch('https://menus-api.vercel.app/')
     const { id } = useParams();
+    const [orders, orderDispatch] = useOrder();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const [menuItemData, setMenuItemData] = useState('');
-    const [orderSummary, setOrderSummary] = useState({
-        itemName: '',
-        quantity: 0
-    });
+    const [quantity, setQuantity] = useState(0);
+
+
+    useEffect(() => {
+      const fetchMenuItemData = async () => {
+          let selectedItem = null;
+  
+          Object.keys(data).forEach(category => {
+              Object.values(data[category]).forEach(item => {
+                  if (item.id === id) {
+                      selectedItem = item;
+                  }
+              });
+          });
+          setMenuItemData(selectedItem)
+      }
+
+      fetchMenuItemData();
+
+    }, [data]);
+
 
     const updateOrderQuantity = (amount) => {
-        setOrderSummary(prevSummary => ({
-            ...prevSummary,
-            quantity: prevSummary.quantity + amount
-        }));
+        setQuantity(quantity + amount)
     };
 
+    const handleAddToOrder = () => {
+      if (quantity > 0 && menuItemData) {
+        const orderSummary = {
+          dsc: menuItemData.dsc,
+          id: menuItemData.id,
+          img: menuItemData.img,
+          name: menuItemData.name,
+          price: menuItemData.price,
+          quantity: quantity
+        };
+    
+        console.log(`Adding ${quantity} of ${menuItemData.dsc} to order`);
+        
+        // Dispatch an action to add orderSummary to orders
+        orderDispatch({ type: 'ADD_ORDER', payload: orderSummary });
+    
+        // Reset quantity state
+        setQuantity(0);
+      }
+    };
+  
     const handleOrderSubmit = (event) => {
-        event.preventDefault();
-        const { itemName, quantity } = orderSummary;
-        if (quantity > 0){
-            console.log(`Adding ${quantity} of ${itemName} to order`);
-            setOrderSummary(prevSummary => ({
-                ...prevSummary,
-                quantity: 0
-            }));
-        }
+      event.preventDefault();
+      if (quantity > 0) {
+        handleAddToOrder();
+      }
     };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setOrderSummary(prevSummary => ({
-            ...prevSummary,
-            [name]: value
-        }));
+  
+    const handleQuantityChange = (e) => {
+      const value = parseInt(e.target.value, 10); 
+      setQuantity(value); 
     };
 
     if (!menuItemData) {
@@ -72,9 +103,9 @@ export default function MenuItemDetails() {
           </div>
     
           <MenuItemToCart
-                quantity={orderSummary.quantity}
+                quantity={quantity}
                 updateQuantity={updateOrderQuantity}
-                handleChange={handleChange}
+                handleChange={handleQuantityChange}
                 handleSubmit={handleOrderSubmit}
             />
 
