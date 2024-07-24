@@ -1,37 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
 import MenuItemToCart from '../../components/menu/MenuItemToCart';
 import { useRouteLoaderData } from 'react-router-dom';
-import { useOrder } from '../../contexts/OrderContext';
 
 export default function MenuItemDetails() {
-    const data = useRouteLoaderData('menu');
+    const menu = useRouteLoaderData('menu');
     const { id } = useParams();
-    const [orders, orderDispatch] = useOrder();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
-    const [menuItemData, setMenuItemData] = useState('');
+    const allMenus = menu ? Object.values(menu).flat() : [];
     const [quantity, setQuantity] = useState(0);
 
 
-    useEffect(() => {
-      const fetchMenuItemData = async () => {
-          let selectedItem = null;
-  
-          Object.keys(data).forEach(category => {
-              Object.values(data[category]).forEach(item => {
-                  if (item.id === id) {
-                      selectedItem = item;
-                  }
-              });
-          });
-          setMenuItemData(selectedItem)
-      }
-
-      fetchMenuItemData();
-
-    }, [data]);
+    const menuItemData = allMenus.find(item => item.id === id);
 
 
     const updateOrderQuantity = (amount) => {

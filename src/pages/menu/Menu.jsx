@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Icons } from '../../components/Icons';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRouteLoaderData } from 'react-router-dom';
 import MenuItems from '../../components/menu/menuItems'
 
 export default function Menu() {
-    const data = useRouteLoaderData('menu');
+    const menu = useRouteLoaderData('menu');
     const { restaurantName } = useParams();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const [searchValue, setSearchValue] = useState('');
-    const [menuData, setMenuData] = useState([]);
-
-    useEffect(() => {
-        const fetchMenuData = async () => {
-                let menu = [];
-                Object.keys(data).forEach(category => {
-                Object.values(data[category]).forEach(item => {
-                    if (item.name === restaurantName && !menu.some(existingItem => existingItem.id === item.id)) {
-                    menu.push(item);
-                    }
-                });
-                });
-                setMenuData(menu)
+    const allMenus = menu ? Object.values(menu).flat() : [];
+   
+    const menuData = allMenus.reduce((menuData, item) => {
+        if (item.name === restaurantName && !menuData.some(menu => menu.id === item.id)) {
+            menuData.push(item);
         }
-
-        fetchMenuData();
-
-}, [data]);
+        return menuData;
+    }, []);      
 
 
     const filteredMenu = menuData.filter(item =>

@@ -2,7 +2,7 @@ import { Icons } from '../../components/Icons';
 
 const MenuItemToCart = ({ quantity, updateQuantity, handleChange, handleSubmit }) => {
     return (
-        <form className="px-4 flex flex-col gap-4 py-4 px-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 py-4 px-2" onSubmit={handleSubmit}>
             <div className="relative flex items-center">
                 <button
                     type="button"
