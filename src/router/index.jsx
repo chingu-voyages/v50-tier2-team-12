@@ -17,8 +17,8 @@ const routes = (
     errorElement={ErrorBoundary}
   >
     <Route index element={<Home />} />
-    <Route path="/:restaurantName" element={<Menu />}/>
-    <Route path="/:restaurantName/:id" element={<MenuItemDetails />} />
+    <Route path="/restaurants/:name" element={<Menu />}/>
+    <Route path="/menu/:id" element={<MenuItemDetails />} />
     <Route path='order' element={<Order />} />
 
     {/* catch all route to handle unknown routes*/}

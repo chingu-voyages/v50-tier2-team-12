@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
 import MenuItemToCart from '../../components/menu/MenuItemToCart';
@@ -6,12 +6,21 @@ import { useRouteLoaderData } from 'react-router-dom';
 
 export default function MenuItemDetails() {
     const menu = useRouteLoaderData('menu');
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const allMenus = menu ? Object.values(menu).flat() : [];
     const [quantity, setQuantity] = useState(0);
 
+    useEffect(() => {
+      setLoading(true);
+      if (id && !allMenus.some(item => item.id === id)) {
+          navigate('/error'); // Redirect to error page if id doesn't exist
+          return;
+      }
+      setLoading(false); 
+  }, []);
 
     const menuItemData = allMenus.find(item => item.id === id);
 
@@ -37,10 +46,9 @@ export default function MenuItemDetails() {
       setQuantity(value); 
     };
 
-    if (!menuItemData) {
-        return <p>Loading...</p>;
-    }
-
+    if (loading) {
+      return <p>Loading...</p>;
+  }
     return (
         <div className="max-w-md mx-auto flex flex-col min-h-screen">
           <div className="flex-grow">

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MenuItems = ({ items, restaurantName }) => {
+const MenuItems = ({ items }) => {
     return items.map(item => (
-        <Link to={`/${restaurantName}/${item.id}`} key={item.id} >
+        <Link to={`/menu/${item.id}`} key={item.id} >
             <div className="flex items-center justify-between gap-10 bg-gray-100 rounded-lg py-4 px-4">
                 <section className="flex flex-col gap-10 items-start w-1/2">
                     <p className="font-bold">{item.dsc}</p>
