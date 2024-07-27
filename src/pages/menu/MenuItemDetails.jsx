@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Icons } from '../../components/Icons';
 import MenuItemToCart from '../../components/menu/MenuItemToCart';
 import { useRouteLoaderData } from 'react-router-dom';
+import { useOrder } from '../../contexts/OrderContext';
 
 export default function MenuItemDetails() {
     const menu = useRouteLoaderData('menu');
@@ -11,8 +12,10 @@ export default function MenuItemDetails() {
     const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const allMenus = menu ? Object.values(menu).flat() : [];
-    const [quantity, setQuantity] = useState(0);
-
+    const menuItemData = allMenus.find(item => item.id === id);
+    const [_, dispatchOrder] = useOrder();
+    const [quantity, setQuantity] = useState(0)
+  
     useEffect(() => {
       setLoading(true);
       if (id && !allMenus.some(item => item.id === id)) {
@@ -21,30 +24,27 @@ export default function MenuItemDetails() {
       }
       setLoading(false); 
   }, []);
-
-    const menuItemData = allMenus.find(item => item.id === id);
-
-
-    const updateOrderQuantity = (amount) => {
-      setQuantity(prevQuantity => prevQuantity + amount);
+  
+    const handleAddToOrder = () => {
+      if (quantity > 0) {
+          console.log(`Adding ${quantity} of ${menuItemData.dsc} to order`);
+          dispatchOrder({
+              type: 'ADD_ORDER',
+              payload: {
+                menu: menuItemData,
+                quantity: quantity
+              }
+          });
+          setQuantity(0); 
+      }
   };
 
-    const handleAddToOrder = () => {
-        console.log(`Adding ${quantity} of ${menuItemData.dsc} to order`);
-        setQuantity(0);
-    };
-  
-    const handleOrderSubmit = (event) => {
-      event.preventDefault();
-      if (quantity > 0) {
-        handleAddToOrder();
-      }
-    };
-  
-    const handleQuantityChange = (e) => {
-      const value = parseInt(e.target.value, 10); 
-      setQuantity(value); 
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    
+    handleAddToOrder();
+  };
+
 
     if (loading) {
       return <p>Loading...</p>;
@@ -78,9 +78,8 @@ export default function MenuItemDetails() {
     
           <MenuItemToCart
                 quantity={quantity}
-                updateQuantity={updateOrderQuantity}
-                handleChange={handleQuantityChange}
-                handleSubmit={handleOrderSubmit}
+                setQuantity={setQuantity}
+                handleSubmit={handleSubmit}
             />
 
         </div>
