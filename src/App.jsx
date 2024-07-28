@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import MobileNavbar from './components/navigation/MobileNavbar';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -7,9 +8,10 @@ function App() {
       <header>
         <MobileNavbar />
       </header>
-      <main className='px-5 pt-5 mb-24 md:mb-0'>
+      <main className='px-5 pt-5 flex-grow'>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 }
