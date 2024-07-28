@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.active-link {
-  filter: invert(46%) sepia(64%) saturate(7292%) hue-rotate(249deg)
-    brightness(90%) contrast(98%);
-}
-
 body {
   font-family: 'Work Sans', sans-serif;
   font-size: 1rem;
@@ -35,6 +30,13 @@ dialog {
   }
 }
 
+@layer utilities {
+  .active-link {
+    filter: invert(46%) sepia(64%) saturate(7292%) hue-rotate(249deg)
+      brightness(90%) contrast(98%);
+  }
+}
+
 /* not supported in firefox yet */
 @starting-style {
   dialog:where([open]) {
@@ -49,4 +51,12 @@ dialog {
 
 button {
   @apply transition-all ease-in-out duration-200;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }
