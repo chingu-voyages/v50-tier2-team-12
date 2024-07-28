@@ -8,12 +8,10 @@ function App() {
       <header>
         <MobileNavbar />
       </header>
-      <main className='px-5 pt-5 mb-24 md:mb-0'>
+      <main className='px-5 pt-5 flex-grow'>
         <Outlet />
-        <div className='fixed inset-x-0 bottom-16 flex justify-center bg-white'>
-          <Footer />
-        </div>
       </main>
+      <Footer />
     </>
   );
 }
