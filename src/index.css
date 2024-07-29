@@ -2,31 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 1rem;
-  color: #33293b;
-}
-
-dialog {
-  --opacity: 0;
-
-  scale: 0.5;
-
-  &,
-  &::backdrop {
-    opacity: var(--opacity);
-    transition: all 0.7s ease-in-out allow-discrete;
+@layer base {
+  body {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1rem;
+    color: #33293b;
   }
 
-  &::backdrop {
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
+  dialog {
+    --opacity: 0;
+
+    scale: 0.5;
+
+    &,
+    &::backdrop {
+      opacity: var(--opacity);
+      transition: all 0.7s ease-in-out allow-discrete;
+    }
+
+    &::backdrop {
+      -webkit-backdrop-filter: blur(1px);
+      backdrop-filter: blur(1px);
+    }
+
+    &:where([open]) {
+      --opacity: 1;
+      scale: 1;
+    }
   }
 
-  &:where([open]) {
-    --opacity: 1;
-    scale: 1;
+  button {
+    @apply transition-all ease-in-out duration-200;
+  }
+
+  /* not supported in firefox yet */
+  @starting-style {
+    dialog:where([open]) {
+      --opacity: 0;
+      scale: 0.5;
+    }
+
+    dialog:where([open])::backdrop {
+      --opacity: 0;
+    }
   }
 }
 
@@ -35,28 +53,13 @@ dialog {
     filter: invert(46%) sepia(64%) saturate(7292%) hue-rotate(249deg)
       brightness(90%) contrast(98%);
   }
-}
 
-/* not supported in firefox yet */
-@starting-style {
-  dialog:where([open]) {
-    --opacity: 0;
-    scale: 0.5;
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
-  dialog:where([open])::backdrop {
-    --opacity: 0;
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-}
-
-button {
-  @apply transition-all ease-in-out duration-200;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none; 
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none; 
 }

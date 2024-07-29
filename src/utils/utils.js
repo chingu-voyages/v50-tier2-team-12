@@ -15,3 +15,15 @@ export async function fetchMenus() {
     });
   }
 }
+
+export function removeDuplicates(items, filterKey) {
+  const seenIds = new Set();
+
+  const noDuplicates = items.filter((item) => {
+    if (seenIds.has(item[filterKey])) return false;
+    seenIds.add(item[filterKey]);
+    return true;
+  });
+
+  return noDuplicates;
+}
