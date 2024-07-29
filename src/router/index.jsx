@@ -7,7 +7,7 @@ import Menu from '../pages/menu/Menu';
 import MenuItemDetails from '../pages/menu/MenuItemDetails';
 import Order from '../pages/order/Order';
 import { fetchMenus } from '../utils/utils';
-import Credits from '../pages/credits/Credits';
+import Credits from '../pages/credits/CreditsPage';
 
 const routes = (
   <Route
