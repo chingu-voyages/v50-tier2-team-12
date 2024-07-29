@@ -7,6 +7,7 @@ import Menu from '../pages/menu/Menu';
 import MenuItemDetails from '../pages/menu/MenuItemDetails';
 import Order from '../pages/order/Order';
 import { fetchMenus } from '../utils/utils';
+import Credits from '../pages/credits/Credits';
 
 const routes = (
   <Route
@@ -17,8 +18,9 @@ const routes = (
     errorElement={ErrorBoundary}
   >
     <Route index element={<Home />} />
-    <Route path="/restaurants/:name" element={<Menu />}/>
-    <Route path="/menu/:id" element={<MenuItemDetails />} />
+    <Route path='/restaurants/:name' element={<Menu />} />
+    <Route path='/menu/:id' element={<MenuItemDetails />} />
+    <Route path='credits' element={<Credits />} />
     <Route path='order' element={<Order />} />
 
     {/* catch all route to handle unknown routes*/}
