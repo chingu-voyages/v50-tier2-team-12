@@ -1,16 +1,17 @@
 import LazyLoad from 'react-lazyload';
-
+import { Link } from 'react-router-dom';
 const Restaurant = ({ restaurant }) => {
   const handleError = (e) => {
     e.target.src = "/meal-dummy-image.webp";
   };
 
   return (
-    <section className="leading-5 py-6">
+    <section className="leading-5 py-6" >
+      <Link to={`/restaurants/${restaurant.name}`}>
       <LazyLoad
         height={200}
         offset={100}
-        placeholder={<div className="h-28 w-96 sm:w-80 bg-gray-200 animate-pulse rounded-t-2xl mb-3"></div>}
+        placeholder={<div className="h-28 w-96 sm:w-80 bg-disabled animate-pulse rounded-t-2xl mb-3"></div>}
       >
         <img
           src={restaurant.img}
@@ -22,6 +23,7 @@ const Restaurant = ({ restaurant }) => {
       </LazyLoad>
       <h2 className="text-lg font-semibold">{restaurant.name}</h2>
       <p>{restaurant.country}</p>
+      </Link>
     </section>
   );
 }
