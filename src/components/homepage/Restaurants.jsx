@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Restaurant from "./Restaurant";
-import { useRouteLoaderData } from 'react-router-dom';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useAsyncValue } from 'react-router-dom';
+import Restaurant from './Restaurant';
 
 const Restaurants = () => {
-  const [activeCategory, setActiveCategory] = useState("");
+  const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const menu = useRouteLoaderData('menu');
+  const menu = useAsyncValue();
 
   // eslint-disable-next-line
   const { pagination, ...restMenus } = menu || {};
@@ -46,11 +46,12 @@ const Restaurants = () => {
     <>
       <div className='flex gap-2 max-w-ful overflow-scroll no-scrollbar'>
         <button
-          className={`w-max ${!activeCategory
-            ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
-            : 'border-disabled text-disabled '}`
-          }
-          onClick={() => handleCategoryClick("")}
+          className={`w-max ${
+            !activeCategory
+              ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
+              : 'border-disabled text-disabled '
+          }`}
+          onClick={() => handleCategoryClick('')}
         >
           All
         </button>
@@ -59,13 +60,15 @@ const Restaurants = () => {
           return (
             <button
               key={index}
-              className={`w-max text-nowrap transition-all  ${isActive
-                ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
-                : 'border-disabled text-disabled '
-                }`}
+              className={`w-max text-nowrap transition-all  ${
+                isActive
+                  ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
+                  : 'border-disabled text-disabled '
+              }`}
               onClick={() => handleCategoryClick(category)}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1, category.length)}
+              {category.charAt(0).toUpperCase() +
+                category.slice(1, category.length)}
             </button>
           );
         })}
@@ -75,9 +78,13 @@ const Restaurants = () => {
         next={fetchMoreData}
         hasMore={visibleRestaurants.length < displayedMenu.length}
         loader={<h4>Loading... </h4>}
-        endMessage={<p style={{ textAlign: 'center' }}><b>No more restaurants</b></p>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>No more restaurants</b>
+          </p>
+        }
       >
-        <section className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center m-auto w-full">
+        <section className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center m-auto w-full'>
           {visibleRestaurants.map((restaurant, index) => (
             <Restaurant key={index} restaurant={restaurant} />
           ))}
