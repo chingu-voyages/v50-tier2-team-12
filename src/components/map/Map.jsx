@@ -8,9 +8,9 @@ import markerUrl from '../../assets/marker.svg';
 import { cn, removeDuplicates } from '../../utils/utils';
 import DropDown from './DropDown';
 
-export default function Map({ restaurants }) {
-  const storageKey = 'app-country';
+const storageKey = 'app-country';
 
+export default function Map({ restaurants }) {
   const defaultCountry = localStorage.getItem(storageKey) ?? '';
 
   const countries = removeDuplicates(restaurants, 'country').map(
@@ -75,7 +75,7 @@ export default function Map({ restaurants }) {
                 icon={markerIcon}
               >
                 <Popup>
-                  <h4 className='mb-1'>{restaurant.name}</h4>
+                  <h4 className='mb-1text-2xl'>{restaurant.name}</h4>
                   <Link
                     to={`/restaurants/${restaurant.name}`}
                     className='capitalize text-center block'

@@ -40,7 +40,9 @@ export default function DropDown({ value, handleChange, options, label }) {
                 onClick={() => handleOptionClick(option)}
                 className={cn(
                   'py-2 px-4 block w-full transition-colors duration-200 ease-linear',
-                  isActiveOption ? 'bg-light-violet' : ''
+                  isActiveOption
+                    ? ' bg-primary-violet/40'
+                    : ' hover:bg-light-violet'
                 )}
               >
                 {option}

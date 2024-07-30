@@ -16,6 +16,8 @@ export async function fetchMenus() {
   }
 }
 
+
+// remove duplicate items in an array
 export function removeDuplicates(items, filterKey) {
   const seenIds = new Set();
 
