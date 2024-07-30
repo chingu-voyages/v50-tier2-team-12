@@ -4,7 +4,7 @@ const MenuItemToCart = ({ quantity, setQuantity, handleSubmit }) => {
   
  
     return (
-    <form className="flex flex-col gap-4 py-4 px-2" onSubmit={handleSubmit}>
+    <form className="flex flex-col py-4 px-2" onSubmit={handleSubmit}>
       <div className="relative flex items-center">
         <button
           type="button"

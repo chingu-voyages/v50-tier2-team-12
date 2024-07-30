@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Icons } from '../../components/Icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRouteLoaderData } from 'react-router-dom';
+import PageHeading from '../../components/headings/PageHeading';
 import MenuItems from '../../components/menu/menuItems'
 
 export default function Menu() {
@@ -41,14 +42,7 @@ export default function Menu() {
     
     return (
         <div className="max-w-md mx-auto mx-4">
-        <section className="grid grid-cols-3 gap-4 mt-5 mb-2 items-center">
-            <button onClick={goBack} className="flex items-center">
-                <Icons.back className="w-6 h-6 mr-2" />
-            </button>
-            <h2 className="col-span-2 capitalize font-work-sans font-semibold text-2xl text-black truncate">
-                {name}
-            </h2>
-        </section>
+        <PageHeading title={`${name}`} />
 
         <section className="flex justify-center items-center my-8">
             <div className="w-full max-w-xl bg-gray-100 flex items-center px-4 rounded-lg">
