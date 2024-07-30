@@ -5,6 +5,7 @@ export default function AddCreditsModal({ setCredits, setIsOpen, isOpen }) {
   const [creditAmount, setCreditAmount] = useState('');
 
   const onClose = () => {
+    setCreditAmount('');
     setIsOpen(false);
   };
 
