@@ -11,6 +11,7 @@ import { useOrder } from '../../contexts/OrderContext';
 
 export default function OrderPage() {
   const [orders] = useOrder();
+  const [credits, setCredits] = useState(40);
   const [courierTip, setCourierTip] = useState(0);
 
   // use available credits
@@ -18,7 +19,7 @@ export default function OrderPage() {
 
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
 
-  const credits = 40;
+  // const credits = 40;
 
   const delivery = 0;
 

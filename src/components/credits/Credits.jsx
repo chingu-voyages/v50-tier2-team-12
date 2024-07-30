@@ -1,4 +1,13 @@
-export default function Credits({ credits, isCredits, toggleIsCredits }) {
+export default function Credits({
+  credits,
+  isCredits,
+  toggleIsCredits,
+  setIsAddCreditsModalOpen,
+}) {
+  const handleOpenAddCreditsModal = () => {
+    setIsAddCreditsModalOpen(true);
+  };
+
   return (
     <section className='flex flex-col mt-8 h-[580px]'>
       <h3 className='font-medium text-xl'>Available Credits</h3>
@@ -21,7 +30,7 @@ export default function Credits({ credits, isCredits, toggleIsCredits }) {
       <div className='flex-grow'></div>
       <div>
         <button
-          onClick={handleClick}
+          onClick={handleOpenAddCreditsModal}
           className='w-full bg-primary-violet text-white rounded-lg p-3 h-11'
         >
           Add more credits
@@ -29,8 +38,4 @@ export default function Credits({ credits, isCredits, toggleIsCredits }) {
       </div>
     </section>
   );
-}
-
-function handleClick() {
-  console.log('open modal');
 }
