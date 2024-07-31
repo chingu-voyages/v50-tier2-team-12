@@ -2,7 +2,14 @@ import { useState } from 'react';
 import { cn } from '../../utils/utils';
 import { Icons } from '../Icons';
 
-export default function DropDown({ value, handleChange, options, label }) {
+export default function DropDown({
+  value,
+  handleChange,
+  options,
+  label,
+  showDefaultOption = false,
+  defaultOptionLabel = '',
+}) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
@@ -20,7 +27,7 @@ export default function DropDown({ value, handleChange, options, label }) {
         onClick={toggleDropdown}
         className='flex items-center justify-between w-full bg-light-grey px-4 rounded-lg py-2'
       >
-        <span>{value ? value : label}</span>
+        <span>{value || label}</span>
 
         <Icons.downArrow
           className={cn(
@@ -31,26 +38,42 @@ export default function DropDown({ value, handleChange, options, label }) {
       </button>
 
       {isDropdownVisible ? (
-        <div className='absolute top-full inset-0 bg-light-grey rounded-md h-80 overflow-y-scroll mt-2 z-high flex flex-col gap-2 justify-start items-start max-w-sm hover:outline hover:outline-primary-violet animate-accordion-down'>
+        <div className='absolute top-full inset-0 bg-light-grey rounded-md h-80 overflow-y-scroll mt-2 z-high flex flex-col gap-2 justify-start items-start max-w-sm outline outline-primary-violet animate-accordion-down'>
+          {showDefaultOption ? (
+            <Option
+              handleOptionClick={handleOptionClick}
+              label={defaultOptionLabel || label}
+              value={''}
+            />
+          ) : null}
           {options.map((option) => {
             const isActiveOption = option === value;
             return (
-              <button
+              <Option
                 key={option}
-                onClick={() => handleOptionClick(option)}
-                className={cn(
-                  'py-2 px-4 block w-full transition-colors duration-200 ease-linear',
-                  isActiveOption
-                    ? ' bg-primary-violet/40'
-                    : ' hover:bg-light-violet'
-                )}
-              >
-                {option}
-              </button>
+                label={option}
+                value={option}
+                handleOptionClick={handleOptionClick}
+                isActiveOption={isActiveOption}
+              />
             );
           })}
         </div>
       ) : null}
     </section>
+  );
+}
+
+function Option({ isActiveOption, label, handleOptionClick, value }) {
+  return (
+    <button
+      onClick={() => handleOptionClick(value)}
+      className={cn(
+        'py-2 px-4 block w-full transition-colors duration-200 ease-linear',
+        isActiveOption ? ' bg-primary-violet/40' : ' hover:bg-light-violet'
+      )}
+    >
+      {label}
+    </button>
   );
 }

@@ -51,6 +51,7 @@ export default function Map({ restaurants }) {
         handleChange={updateFilter}
         options={countries}
         label='Select in which city you are'
+        showDefaultOption
       />
 
       <MapContainer
