@@ -38,7 +38,7 @@ export default function DropDown({
       </button>
 
       {isDropdownVisible ? (
-        <div className='absolute top-full inset-0 bg-light-grey rounded-md h-80 overflow-y-scroll mt-2 z-high flex flex-col gap-2 justify-start items-start max-w-sm outline outline-primary-violet animate-accordion-down'>
+        <div className='absolute top-full inset-0 bg-light-grey rounded-md h-80 overflow-y-scroll mt-2 z-high flex flex-col gap-2 justify-start items-start outline outline-primary-violet animate-accordion-down'>
           {showDefaultOption ? (
             <Option
               handleOptionClick={handleOptionClick}
@@ -69,7 +69,7 @@ function Option({ isActiveOption, label, handleOptionClick, value }) {
     <button
       onClick={() => handleOptionClick(value)}
       className={cn(
-        'py-2 px-4 block w-full transition-colors duration-200 ease-linear',
+        'py-2 px-4 block w-full transition-colors duration-200 ease-linear text-left',
         isActiveOption ? ' bg-primary-violet/40' : ' hover:bg-light-violet'
       )}
     >
