@@ -27,7 +27,7 @@ export default function OrderPage() {
     0
   );
 
-  const total = subtotal + courierTip + delivery - (isCredits ? credits : 0);
+  const total = (subtotal + courierTip + delivery - (isCredits ? credits : 0)).toFixed(2);
 
   const toggleIsCredits = () => {
     setIsCredits((prev) => !prev);

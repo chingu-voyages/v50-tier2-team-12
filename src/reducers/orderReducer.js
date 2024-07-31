@@ -3,14 +3,14 @@ export default function orderReducer(state, action) {
     case 'ADD_ORDER': {
       // pass menu item as payload
 
-      const menu = action.payload;
+      const { menu, quantity } = action.payload;
       const index = state.findIndex((item) => item.id === menu.id);
 
       if (index >= 0) {
         const updatedState = [...state];
         updatedState.splice(index, 1, {
           ...state[index],
-          quantity: state[index].quantity + 1,
+          quantity: state[index].quantity + quantity,
         });
 
         return updatedState;
@@ -20,7 +20,7 @@ export default function orderReducer(state, action) {
         ...state,
         {
           ...menu,
-          quantity: 1,
+          quantity: quantity,
         },
       ];
     }
