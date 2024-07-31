@@ -44,26 +44,26 @@ const Restaurants = () => {
 
   return (
     <>
-      <div className='flex gap-2 max-w-ful overflow-scroll no-scrollbar'>
+      <div className='flex gap-2 max-w-full overflow-scroll no-scrollbar'>
         <button
           className={`w-max ${
             !activeCategory
               ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
-              : 'border-disabled text-disabled '
+              : 'border-disabled  '
           }`}
           onClick={() => handleCategoryClick('')}
         >
           All
         </button>
-        {allCategories.map((category, index) => {
+        {allCategories.map((category) => {
           const isActive = category === activeCategory;
           return (
             <button
-              key={index}
+              key={category}
               className={`w-max text-nowrap transition-all  ${
                 isActive
                   ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
-                  : 'border-disabled text-disabled '
+                  : 'border-grey '
               }`}
               onClick={() => handleCategoryClick(category)}
             >
@@ -77,16 +77,16 @@ const Restaurants = () => {
         dataLength={visibleRestaurants.length}
         next={fetchMoreData}
         hasMore={visibleRestaurants.length < displayedMenu.length}
-        loader={<h4>Loading... </h4>}
+        loader={<h3>Loading... </h3>}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
+          <p className='text-center'>
             <b>No more restaurants</b>
           </p>
         }
       >
-        <section className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center m-auto w-full'>
-          {visibleRestaurants.map((restaurant, index) => (
-            <Restaurant key={index} restaurant={restaurant} />
+        <section className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center mx-auto w-full overflow-hidden'>
+          {visibleRestaurants.map((restaurant) => (
+            <Restaurant key={restaurant.id} restaurant={restaurant} />
           ))}
         </section>
       </InfiniteScroll>

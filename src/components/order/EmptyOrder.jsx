@@ -3,13 +3,13 @@ import tree from '../../assets/tree.webp';
 
 export default function EmptyOrder() {
   return (
-    <div className='min-h-[87vh] flex flex-col'>
+    <div className='min-h-view flex flex-col'>
       <p className='bg-light-violet rounded-2xl p-7'>
         it looks like you haven&#39;t ordered anything yet!
       </p>
 
       <div className='grid place-items-center my-7 pt-12'>
-        <img src={tree} alt='' className='max-w-[14rem] rotate-[29.9deg]' />
+        <img src={tree} alt='' className='max-w-[14rem] rotate-[29.9deg] ' />
       </div>
 
       <Link

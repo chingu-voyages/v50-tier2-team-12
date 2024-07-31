@@ -8,7 +8,6 @@ import RestaurantSkeleton from '../../components/skeletons/RestaurantSkeleton';
 export default function Menu() {
   const { data } = useRouteLoaderData('menu');
   const { name } = useParams();
-
   return (
     <div className='max-w-md mx-auto'>
       <PageHeading title={`${name}`} />
