@@ -2,6 +2,7 @@ import { useState } from "react";
 import Restaurant from "./Restaurant";
 import { useRouteLoaderData } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link } from 'react-router-dom';
 
 const Restaurants = () => {
   const [activeCategory, setActiveCategory] = useState("");
@@ -79,7 +80,9 @@ const Restaurants = () => {
       >
         <section className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center m-auto w-full">
           {visibleRestaurants.map((restaurant, index) => (
-            <Restaurant key={index} restaurant={restaurant} />
+            <Link to={`/restaurants/${restaurant.name}`} key={index}>
+              <Restaurant restaurant={restaurant} />
+            </Link>
           ))}
         </section>
       </InfiniteScroll>
