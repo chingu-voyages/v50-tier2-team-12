@@ -12,7 +12,7 @@ export default function HomePage() {
       <h2 className='font-bold text-3xl'>Restaurants</h2>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
-          <Restaurants data={data} />
+          <Restaurants />
         </Await>
       </Suspense>
     </section>

@@ -1,33 +1,8 @@
-import { Suspense, useState } from 'react';
-import {
-  Await,
-  Navigate,
-  useAsyncValue,
-  useParams,
-  useRouteLoaderData,
-} from 'react-router-dom';
-import DataError from '../../components/error/DataError';
-import PageHeading from '../../components/headings/PageHeading';
-import MenuItemToCart from '../../components/menu/MenuItemToCart';
-import MenuSkeleton from '../../components/skeletons/MenuSkeleton';
+import { useState } from 'react';
+import { Navigate, useAsyncValue, useParams } from 'react-router-dom';
+import MenuItemToCart from './MenuItemToCart';
 
-export default function MenuItemDetails() {
-  const { data } = useRouteLoaderData('menu');
-
-  return (
-    <div className='max-w-md mx-auto flex flex-col min-h-screen'>
-      <PageHeading title={'product details'} />
-
-      <Suspense fallback={<MenuSkeleton />}>
-        <Await resolve={data} errorElement={<DataError />}>
-          <ItemDetails />
-        </Await>
-      </Suspense>
-    </div>
-  );
-}
-
-function ItemDetails() {
+export default function ItemDetails() {
   const { id } = useParams();
 
   const menu = useAsyncValue();
