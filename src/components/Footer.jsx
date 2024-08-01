@@ -10,7 +10,7 @@ export function Footer() {
         target='_blank'
         className='flex items-center gap-x-1.5'
       >
-        &copy; 2024 Team 12 of Voyage 50 <Icons.github />
+        &copy; {new Date().getFullYear()} Team 12 of Voyage 50 <Icons.github />
       </a>
     </footer>
   );
