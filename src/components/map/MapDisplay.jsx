@@ -33,6 +33,8 @@ export default function Map({ restaurants }) {
   // map center
   const center = [averageLatitude, averageLongitude];
 
+  const zoom = filter ? 10 : 5;
+
   // custom map marker icon
   const markerIcon = new Icon({
     iconUrl: markerUrl,
@@ -57,11 +59,11 @@ export default function Map({ restaurants }) {
 
       <MapContainer
         center={center}
-        zoom={5}
+        zoom={zoom}
         scrollWheelZoom={false}
         className={cn('w-screen min-h-view h-[70vh] max-w-full rounded-md')}
       >
-        <ChangeMapCenter center={center} />
+        <ChangeMapCenter center={center} zoom={zoom} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -77,7 +79,7 @@ export default function Map({ restaurants }) {
                 icon={markerIcon}
               >
                 <Popup>
-                  <h4 className='mb-1text-2xl'>{restaurant.name}</h4>
+                  <h4 className='mb-1 text-xl'>{restaurant.name}</h4>
                   <Link
                     to={`/restaurants/${restaurant.name}`}
                     className='capitalize text-center block'
