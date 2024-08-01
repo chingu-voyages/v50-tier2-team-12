@@ -12,7 +12,7 @@ export default function Credits({
     <section className='flex flex-col mt-8 h-[580px]'>
       <h3 className='font-medium text-xl'>Available Credits</h3>
       <div className='mt-1 bg-light-violet py-5 px-3 mb-2 rounded-2xl text-xl font-medium text-primary-violet'>
-        ${credits}
+        ${credits.toFixed(2)}
       </div>
       <div className='flex justify-between items-center mt-1 bg-light-violet py-5 px-3 rounded-2xl min-h-[68px]'>
         <p className=''>Always use available credits</p>

@@ -11,8 +11,8 @@ export default function AddCreditsModal({ setCredits, setIsOpen, isOpen }) {
 
   const onConfirm = () => {
     if (creditAmount === '') return;
-    setCredits((currentCredits) =>
-      (parseFloat(currentCredits) + parseFloat(creditAmount)).toFixed(2)
+    setCredits(
+      (currentCredits) => parseFloat(currentCredits) + parseFloat(creditAmount)
     );
     setCreditAmount('');
     onClose();
