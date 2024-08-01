@@ -8,11 +8,11 @@ export default function HomePage() {
   const { data } = useRouteLoaderData('menu');
 
   return (
-    <section className='space-y-6 p-8'>
+    <section className='space-y-6'>
       <h2 className='font-bold text-3xl'>Restaurants</h2>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
-          <Restaurants />
+          {(restuarants) => <Restaurants menu={restuarants} />}
         </Await>
       </Suspense>
     </section>

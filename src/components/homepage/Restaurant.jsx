@@ -12,14 +12,14 @@ const Restaurant = ({ restaurant }) => {
           height={200}
           offset={100}
           placeholder={
-            <div className='h-28 w-96 sm:w-80 bg-disabled animate-pulse rounded-t-2xl mb-3'></div>
+            <div className='h-28 w-96 sm:w-80 bg-light-grey animate-pulse rounded-t-2xl mb-3'></div>
           }
         >
           <img
             src={restaurant.img}
             loading='lazy'
             onError={handleError}
-            className='h-28 w-96 sm:w-80 object-cover rounded-t-2xl bg-gradient-to-r from-gray-200 to-gray-500 mb-3'
+            className='h-28 w-96 sm:w-80 object-cover rounded-t-2xl bg-light-grey mb-3'
             alt={restaurant.name}
           />
         </LazyLoad>

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Await, useParams, useRouteLoaderData } from 'react-router-dom';
 
 import PageHeading from '../../components/headings/PageHeading';
-import Restaurants from '../../components/menu/Restaurants';
+import RestaurantMenus from '../../components/menu/RestaurantMenus';
 import RestaurantSkeleton from '../../components/skeletons/RestaurantSkeleton';
 
 export default function Menu() {
@@ -14,7 +14,7 @@ export default function Menu() {
 
       <Suspense fallback={<RestaurantSkeleton />}>
         <Await resolve={data}>
-          <Restaurants name={name} />
+          <RestaurantMenus name={name} />
         </Await>
       </Suspense>
     </div>

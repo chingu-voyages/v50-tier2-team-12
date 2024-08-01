@@ -7,6 +7,7 @@
     font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     color: #33293b;
+    background-color: white;
   }
 
   dialog {
@@ -65,7 +66,7 @@
 
   .loading {
     position: relative;
-    background: #f7f7f7;
+    background: #ececec;
     border-radius: 0.5rem;
     overflow: hidden;
     display: block;

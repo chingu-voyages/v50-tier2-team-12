@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useAsyncValue } from 'react-router-dom';
 import Restaurant from './Restaurant';
 
-const Restaurants = () => {
+const Restaurants = ({ menu }) => {
   const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  const menu = useAsyncValue();
+  const itemsPerPage = 10;
 
   // eslint-disable-next-line
   const { pagination, ...restMenus } = menu || {};
