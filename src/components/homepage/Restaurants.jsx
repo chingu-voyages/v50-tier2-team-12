@@ -4,7 +4,6 @@ import { useRouteLoaderData } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Search from "../Search/Search";
 import NoSearchResults from "../Search/NoSearchResults";
-
 const Restaurants = () => {
   const [filter, setFilter] = useState("");
   const [activeCategory, setActiveCategory] = useState("");

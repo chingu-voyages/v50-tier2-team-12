@@ -17,9 +17,9 @@ const MenuItemToCart = ({ quantity, setQuantity, handleSubmit }) => {
           <Icons.minus className="w-4 h-4" />
         </button>
 
-        <span className="bg-purple-100 h-11 flex items-center justify-center text-purple-600 text-normal block w-full placeholder-purple-600 select-none">
+        <p className="bg-purple-100 h-11 flex items-center justify-center text-purple-600 text-normal  w-full placeholder-purple-600 select-none">
           {quantity}
-        </span>
+        </p>
 
         <button
           type="button"
