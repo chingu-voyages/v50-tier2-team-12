@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeading from '../../components/headings/PageHeading';
 import CourierTipModal from '../../components/modals/CourierTipModal';
 import CourierTips from '../../components/order/CourierTip';
@@ -8,14 +8,13 @@ import OrderList from '../../components/order/Order';
 import OrderSummary from '../../components/order/OrderSummary';
 import SlideRightButton from '../../components/order/SlideRightButton';
 import { useOrder } from '../../contexts/OrderContext';
+import toast from 'react-hot-toast';
 
 export default function OrderPage() {
   const [orders] = useOrder();
   const [courierTip, setCourierTip] = useState(0);
-
   // use available credits
   const [isCredits, setIsCredits] = useState(false);
-
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
 
   const credits = 40;
@@ -33,10 +32,16 @@ export default function OrderPage() {
     setIsCredits((prev) => !prev);
   };
 
+  useEffect(() => {
+
+    toast.dismiss(); 
+    
+}, []);
+
   const handleOrder = () => {
     // temporary user success
     console.log(courierTip, total, orders);
-    window.alert('order sent!');
+    toast.success('Your order is on the way!');
   };
 
   const isOrderEmpty = !orders || orders.length === 0;

@@ -10,7 +10,6 @@ export default function Menu() {
     const [loading, setLoading] = useState(true);
     const { name } = useParams();
     const navigate = useNavigate();
-    const goBack = () => navigate(-1);
     const [searchValue, setSearchValue] = useState('');
     const allMenus = menu ? Object.values(menu).flat() : [];
    

@@ -1,26 +1,23 @@
 import { useOrder } from '../../contexts/OrderContext';
 import { Icons } from '../Icons';
+import toast from 'react-hot-toast';
 
 export default function OrderList({ orders }) {
-  return (
-    <section className='grid gap-7 mb-20'>
-      {orders.map((order) => (
-        <OrderItem key={order.id} {...order} />
-      ))}
-    </section>
-  );
-}
-
-function OrderItem({ name, price, dsc, quantity, id }) {
   const [_, dispatchOrder] = useOrder();
 
   const removeOrder = (id) => {
     if (!id) return;
-
+    
     dispatchOrder({
       type: 'REMOVE_ORDER',
       payload: id,
     });
+    
+    if (orders.length > 1) {
+      toast('Product removed from cart!', {
+        icon: <Icons.trash />,
+      });
+    }
   };
 
   const increaseQuantity = (id) => {
@@ -36,9 +33,25 @@ function OrderItem({ name, price, dsc, quantity, id }) {
       payload: id,
     });
   };
+  return (
+    <section className='grid gap-7 mb-20'>
+      {orders.map((order) => (
+        <OrderItem 
+          key={order.id} 
+          {...order} 
+          removeOrder={removeOrder}
+          increaseQuantity={increaseQuantity}
+          decreaseQuantity={decreaseQuantity}
+        />
+      ))}
+    </section>
+  );
+}
+
+function OrderItem({ name, price, dsc, quantity, id, removeOrder, increaseQuantity, decreaseQuantity }) {
 
   return (
-    <article className=''>
+    <article>
       <div className='flex justify-between items-center mb-2'>
         <h3 className='font-medium text-xl'>{name}</h3>
         <div className="flex items-center">

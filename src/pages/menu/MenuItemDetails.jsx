@@ -4,6 +4,8 @@ import PageHeading from '../../components/headings/PageHeading';
 import MenuItemToCart from '../../components/menu/MenuItemToCart';
 import { useRouteLoaderData } from 'react-router-dom';
 import { useOrder } from '../../contexts/OrderContext';
+import toast from 'react-hot-toast';
+import { Icons } from '../../components/Icons';
 
 export default function MenuItemDetails() {
     const menu = useRouteLoaderData('menu');
@@ -14,7 +16,7 @@ export default function MenuItemDetails() {
     const menuItemData = allMenus.find(item => item.id === id);
     const [_, dispatchOrder] = useOrder();
     const [quantity, setQuantity] = useState(0)
-  
+
     useEffect(() => {
       setLoading(true);
       if (id && !allMenus.some(item => item.id === id)) {
@@ -22,6 +24,10 @@ export default function MenuItemDetails() {
           return;
       }
       setLoading(false); 
+  }, []);
+
+    useEffect(() => {
+      toast.dismiss(); 
   }, []);
   
     const handleAddToOrder = () => {
@@ -40,8 +46,11 @@ export default function MenuItemDetails() {
 
   const handleSubmit = (event) => {
     event.preventDefault(); 
-    
+
     handleAddToOrder();
+    toast('Product added to cart!', {
+      icon: <Icons.cart />,
+    })
   };
 
 
