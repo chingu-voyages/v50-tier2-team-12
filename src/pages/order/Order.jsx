@@ -8,17 +8,15 @@ import OrderList from '../../components/order/OrderList';
 import OrderSummary from '../../components/order/OrderSummary';
 import SlideRightButton from '../../components/order/SlideRightButton';
 import { useOrder } from '../../contexts/OrderContext';
+import { useOutletContext } from 'react-router-dom';
 
 export default function OrderPage() {
   const [orders] = useOrder();
   const [courierTip, setCourierTip] = useState(0);
 
-  // use available credits
-  const [isCredits, setIsCredits] = useState(false);
+  const { credits, isCredits, setIsCredits } = useOutletContext();
 
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
-
-  const credits = 40;
 
   const delivery = 0;
 

@@ -12,6 +12,7 @@ import Menu from '../pages/menu/Menu';
 import MenuItemDetails from '../pages/menu/MenuItemDetails';
 import Order from '../pages/order/Order';
 import { fetchMenus } from '../utils/utils';
+import Credits from '../pages/credits/CreditsPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path='/restaurants/:name' element={<Menu />} />
       <Route path='/menu/:id' element={<MenuItemDetails />} />
+      <Route path='credits' element={<Credits />} />
       <Route path='order' element={<Order />} />
 
       <Route path='map' element={<MapPage />} />
