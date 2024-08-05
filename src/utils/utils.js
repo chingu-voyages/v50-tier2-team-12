@@ -1,4 +1,5 @@
 import { clsx } from 'clsx';
+import { defer } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs) {
@@ -6,12 +7,20 @@ export function cn(...inputs) {
 }
 
 export async function fetchMenus() {
-  try {
-    const res = await fetch('https://menus-api.vercel.app/');
-    return res;
-  } catch (error) {
-    throw new Response('An error occurred while fetching data', {
-      status: 404,
-    });
-  }
+  const res = fetch('https://menus-api.vercel.app/').then((res) => res.json());
+  return defer({ data: res });
+}
+
+
+// remove duplicate items in an array
+export function removeDuplicates(items, filterKey) {
+  const seenIds = new Set();
+
+  const noDuplicates = items.filter((item) => {
+    if (seenIds.has(item[filterKey])) return false;
+    seenIds.add(item[filterKey]);
+    return true;
+  });
+
+  return noDuplicates;
 }
