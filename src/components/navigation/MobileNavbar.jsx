@@ -18,7 +18,7 @@ export default function Navbar() {
   }, [orders]);
 
   return (
-    <nav className='grid grid-cols-4 fixed bottom-0 w-full bg-white py-2 md:hidden font-work-sans px-5 gap-1 items-end z-[1000]'>
+    <nav className='grid grid-cols-4 fixed bottom-0 w-full bg-white py-2 md:hidden font-work-sans px-5 gap-1 items-end z-high'>
       {navigationMenu.map((navItem) => (
         <NavItem key={navItem.title} {...navItem} orderLength={orderLength} />
       ))}

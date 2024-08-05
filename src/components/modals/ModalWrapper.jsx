@@ -4,7 +4,7 @@ import { cn } from '../../utils/utils';
 export default function ModalWrapper({
   isDialogOpen,
   confirmText = 'confirm',
-  cancelText = 'close',
+  cancelText = 'cancel',
   showConfirm = true,
   showCancel = true,
   children,
