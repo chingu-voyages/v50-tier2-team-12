@@ -25,6 +25,9 @@ export default {
       borderRadius: {
         '5p': '5.62px',
       },
+      minHeight: {
+        view: 'calc(100vh-10rem)',
+      },
       zIndex: {
         high: '1010',
       },
