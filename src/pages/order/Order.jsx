@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeading from '../../components/headings/PageHeading';
 import CourierTipModal from '../../components/modals/CourierTipModal';
 import CourierTips from '../../components/order/CourierTip';
@@ -8,6 +8,7 @@ import OrderList from '../../components/order/OrderList';
 import OrderSummary from '../../components/order/OrderSummary';
 import SlideRightButton from '../../components/order/SlideRightButton';
 import { useOrder } from '../../contexts/OrderContext';
+import toast from 'react-hot-toast';
 import { useOutletContext } from 'react-router-dom';
 
 export default function OrderPage() {
@@ -36,10 +37,16 @@ export default function OrderPage() {
     setIsCredits((prev) => !prev);
   };
 
+  useEffect(() => {
+
+    toast.dismiss(); 
+    
+}, []);
+
   const handleOrder = () => {
     // temporary user success
     console.log(courierTip, total, orders);
-    window.alert('order sent!');
+    toast.success('Your order is on the way!');
   };
 
   const isOrderEmpty = !orders || orders.length === 0;
