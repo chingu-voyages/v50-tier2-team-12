@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
-import MobileNavbar from './components/navigation/MobileNavbar';
-import { Footer } from './components/Footer';
 import { useEffect, useState } from 'react';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { Footer } from './components/Footer';
+import MainHeader from './components/navigation/MainHeader';
 
 function App() {
   const [credits, setCredits] = useState(() => {
@@ -18,10 +18,9 @@ function App() {
 
   return (
     <>
-      <header>
-        <MobileNavbar />
-      </header>
-      <main className='px-5 pt-5 flex-grow'>
+      <ScrollRestoration />
+      <MainHeader />
+      <main className='px-7 pt-5 flex-grow md:px-17'>
         <Outlet context={{ credits, setCredits, isCredits, setIsCredits }} />
       </main>
       <Footer />

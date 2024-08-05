@@ -25,7 +25,7 @@ export default function DropDown({
     <section className='relative font-roboto mb-3'>
       <button
         onClick={toggleDropdown}
-        className='flex items-center justify-between w-full bg-light-grey px-4 rounded-lg py-2'
+        className='flex items-center justify-between w-full bg-light-grey px-4 rounded-lg py-2 outline-none focus-visible:outline focus-visible:outline-primary-violet'
       >
         <span>{value || label}</span>
 
@@ -39,7 +39,7 @@ export default function DropDown({
 
       {isDropdownVisible ? (
         <div className='absolute top-full inset-0 bg-light-grey rounded-md h-80 overflow-y-scroll mt-2 z-high flex flex-col gap-2 justify-start items-start outline outline-primary-violet animate-accordion-down'>
-          {showDefaultOption ? (
+          {showDefaultOption && value ? (
             <Option
               handleOptionClick={handleOptionClick}
               label={defaultOptionLabel || label}
@@ -70,7 +70,7 @@ function Option({ isActiveOption, label, handleOptionClick, value }) {
       onClick={() => handleOptionClick(value)}
       className={cn(
         'py-2 px-4 block w-full transition-colors duration-200 ease-linear text-left',
-        isActiveOption ? ' bg-primary-violet/40' : ' hover:bg-light-violet'
+        isActiveOption ? ' bg-primary-violet/40' : ' hover:bg-primary-violet/20'
       )}
     >
       {label}
