@@ -8,7 +8,7 @@ export function Footer() {
       <a
         href='https://github.com/chingu-voyages/v50-tier2-team-12'
         target='_blank'
-        className='flex items-center gap-x-1.5'
+        className='flex items-center gap-x-1.5 text-grey'
       >
         &copy; {new Date().getFullYear()} Team 12 of Voyage 50 <Icons.github />
       </a>
