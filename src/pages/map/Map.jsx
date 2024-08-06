@@ -12,10 +12,7 @@ export default function MapPage() {
 
   return (
     <>
-      <PageHeading
-        title={'restaurants near you'}
-        className='flex justify-start items-center gap-12 mb-9 md:gap-28'
-      />
+      <PageHeading title={'restaurants near you'} />
 
       <Suspense fallback={<MapSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>

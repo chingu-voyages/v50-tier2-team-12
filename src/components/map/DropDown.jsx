@@ -70,7 +70,7 @@ function Option({ isActiveOption, label, handleOptionClick, value }) {
       onClick={() => handleOptionClick(value)}
       className={cn(
         'py-2 px-4 block w-full transition-colors duration-200 ease-linear text-left',
-        isActiveOption ? ' bg-primary-violet/40' : ' hover:bg-primary-violet/20'
+        isActiveOption ? ' bg-light-violet' : ' hover:bg-light-violet/90'
       )}
     >
       {label}
