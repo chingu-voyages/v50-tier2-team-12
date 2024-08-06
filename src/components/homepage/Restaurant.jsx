@@ -6,7 +6,6 @@ const Restaurant = ({ restaurant }) => {
   };
 
   return (
-    <section className='leading-5 py-6'>
     <section className="leading-5 py-6 " >
       <Link to={`/restaurants/${restaurant.name}`}>
         <LazyLoad
