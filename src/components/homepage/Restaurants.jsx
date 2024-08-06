@@ -3,6 +3,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Restaurant from './Restaurant';
 import Search from "../Search/Search";
 import NoSearchResults from "../Search/NoSearchResults";
+import { moveBestFoodsToSecond } from "../../utils/utils"
+
 
 const Restaurants = ({ menu }) => {
   const [activeCategory, setActiveCategory] = useState('');
@@ -10,9 +12,14 @@ const Restaurants = ({ menu }) => {
   const [filter, setFilter] = useState("");
   const itemsPerPage = 10;
 
+
   // eslint-disable-next-line
-  const { pagination, ...restMenus } = menu || {};
+  const { pagination, 'our-foods': ourFoods, ...restMenus } = menu || {};
+  console.log(ourFoods);
+
+
   const allCategories = Object.keys(restMenus) || [];
+  moveBestFoodsToSecond(allCategories);
   const allMenus = Object.values(restMenus).flat();
 
   // filter search 
@@ -31,6 +38,7 @@ const Restaurants = ({ menu }) => {
       }
     });
     return uniqueRestaurants;
+
   };
 
   const displayedMenu = activeCategory
@@ -53,35 +61,40 @@ const Restaurants = ({ menu }) => {
 
   return (
     <>
-      <Search value={filter} onChange={updateFilter} />
-      {!filter && (
-        <div className='flex gap-2 max-w-full overflow-scroll no-scrollbar'>
-          <button
-            className={`w-max ${!activeCategory
-              ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
-              : 'border-disabled text-grey'}`
-            }
-            onClick={() => handleCategoryClick("")}
-          >
-            All
-          </button>
-          {allCategories.map((category) => {
-            const isActive = category === activeCategory;
-            return (
-              <button
-                key={category}
-                className={`w-max text-nowrap transition-all ${isActive
-                  ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
-                  : 'border-grey text-grey'
-                  }`}
-                onClick={() => handleCategoryClick(category)}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </button>
-            );
-          })}
-        </div>
-      )}
+      <section className='md:flex   gap-48'>
+        <Search value={filter} onChange={updateFilter} />
+        {!filter && (
+          <div className='flex items-center  gap-2 lg:gap-4 max-w-full  m-auto  overflow-scroll no-scrollbar'>
+
+            <button
+              className={`w-max font-work-sans font-medium text-base text-grey ${!activeCategory
+                ? 'text-primary-violet decoration-primary-violet decoration-2 underline underline-offset-4 font-semibold '
+                : ' '}`
+              }
+              onClick={() => handleCategoryClick("")}
+            >
+              All
+            </button>
+            {allCategories.map((category) => {
+              const isActive = category === activeCategory;
+              return (
+                <button
+                  key={category}
+                  className={`w-max text-nowrap  font-work-sans font-medium text-base text-grey  ${isActive
+                    ? 'text-primary-violet decoration-primary-violet decoration-2 underline underline-offset-4 font-semibold '
+                    : ''
+                    }`}
+                  onClick={() => handleCategoryClick(category)}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </section>
+      <h3 className='text-2xl'>      Discover tasty restaurants!
+</h3 >
       {filteredRestaurants.length === 0 ? (
         <NoSearchResults />
       ) : (
@@ -92,7 +105,7 @@ const Restaurants = ({ menu }) => {
           loader={<h3>Loading... </h3>}
           endMessage={<p className="text-center"><b>No more restaurants</b></p>}
         >
-          <section className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center m-auto w-full">
+          <section className="md:grid  md:grid-cols-3 2xl:grid-cols-4  gap-6 place-items-center m-auto w-full">
             {visibleRestaurants.map((restaurant) => (
               <Restaurant key={restaurant.id} restaurant={restaurant} />
             ))}

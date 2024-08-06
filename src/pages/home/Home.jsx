@@ -6,13 +6,13 @@ import HomeSkeleton from '../../components/skeletons/HomeSkeleton';
 
 export default function HomePage() {
   const { data } = useRouteLoaderData('menu');
-
+ 
   return (
     <section className='space-y-6 mt-7'>
-      <h2 className='font-bold text-3xl'>Restaurants</h2>
+      <h2 className='font-semibold text-2xl'>GourmetGo</h2>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
-          {(restuarants) => <Restaurants menu={restuarants} />}
+          {(restaurants) => <Restaurants menu={restaurants} />}
         </Await>
       </Suspense>
     </section>

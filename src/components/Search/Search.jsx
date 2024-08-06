@@ -2,7 +2,7 @@ import { Icons } from '../Icons';
 
 const Search = ({ value, onChange }) => {
   return (
-    <label className="flex w-full bg-gray-100 items-center px-2 rounded-lg focus-within:outline-primary-violet outline outline-2 outline-transparent transition-all duration-200 transform hover:shadow-lg focus-within:shadow-lg">
+    <label className="md:order-2 flex w-full bg-gray-100 items-center px-2 rounded-lg focus-within:outline-primary-violet outline outline-2 outline-transparent transition-all duration-200 transform">
       <Icons.search className="w-6 h-6" />
       <input
         type="text"
