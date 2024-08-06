@@ -1,9 +1,23 @@
+import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/logo.webp';
+import { useOrder } from '../../contexts/OrderContext';
 import { cn } from '../../utils/utils';
 import { Icons } from '../Icons';
 
 export default function MainHeader() {
+  const [orders] = useOrder();
+  const [orderLength, setOrderLength] = useState(0);
+
+  useEffect(() => {
+    let totalQuantity = 0;
+
+    orders.forEach((item) => {
+      totalQuantity += item.quantity;
+    });
+
+    setOrderLength(totalQuantity);
+  }, [orders]);
   return (
     <header className='fixed bottom-0 w-full py-2 px-5 md:static shadow-small md:shadow-big md:flex md:items-center md:justify-between bg-white z-high md:py-5 md:px-17'>
       <Link
@@ -15,7 +29,7 @@ export default function MainHeader() {
       </Link>
       <nav className='grid grid-cols-4 w-full gap-1 items-end md:flex md:items-center md:gap-6 md:w-fit'>
         {navigationMenu.map((navItem) => (
-          <NavItem key={navItem.title} {...navItem} />
+          <NavItem key={navItem.title} {...navItem} orderLength={orderLength} />
         ))}
       </nav>
 
@@ -31,7 +45,7 @@ export default function MainHeader() {
   );
 }
 
-function NavItem({ title, href, Icon }) {
+function NavItem({ title, href, Icon, orderLength }) {
   return (
     <NavLink
       to={href}
@@ -44,7 +58,14 @@ function NavItem({ title, href, Icon }) {
     >
       {({ isActive }) => (
         <>
-          <Icon className={`${isActive ? 'active-link' : ''}`} />
+          <div className='relative'>
+            <Icon className={`${isActive ? 'active-link' : ''}`} />
+            {orderLength > 0 && title === 'order' && (
+              <span className='absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-primary-violet text-white rounded-full w-5 h-5 flex items-center justify-center font-semibold text-xs'>
+                {orderLength}
+              </span>
+            )}
+          </div>
           <span
             className={cn(
               'capitalize font-medium text-sm',

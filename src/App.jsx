@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import MainHeader from './components/navigation/MainHeader';
+import CustomToaster from './components/toaster/CustomToaster';
 
 function App() {
   const [credits, setCredits] = useState(() => {
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <ScrollRestoration />
+      <CustomToaster />
       <MainHeader />
       <main className='px-7 pt-5 flex-grow md:px-17'>
         <Outlet context={{ credits, setCredits, isCredits, setIsCredits }} />
