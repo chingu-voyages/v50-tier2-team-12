@@ -1,24 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeading from '../../components/headings/PageHeading';
 import CourierTipModal from '../../components/modals/CourierTipModal';
 import CourierTips from '../../components/order/CourierTip';
 import Credits from '../../components/order/Credits';
 import EmptyOrder from '../../components/order/EmptyOrder';
-import OrderList from '../../components/order/Order';
+import OrderList from '../../components/order/OrderList';
 import OrderSummary from '../../components/order/OrderSummary';
 import SlideRightButton from '../../components/order/SlideRightButton';
 import { useOrder } from '../../contexts/OrderContext';
+import toast from 'react-hot-toast';
+import { useOutletContext } from 'react-router-dom';
 
 export default function OrderPage() {
   const [orders] = useOrder();
   const [courierTip, setCourierTip] = useState(0);
 
-  // use available credits
-  const [isCredits, setIsCredits] = useState(false);
+  const { credits, isCredits, setIsCredits } = useOutletContext();
 
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
-
-  const credits = 40;
 
   const delivery = 0;
 
@@ -27,16 +26,27 @@ export default function OrderPage() {
     0
   );
 
-  const total = (subtotal + courierTip + delivery - (isCredits ? credits : 0)).toFixed(2);
+  const total = (
+    subtotal +
+    courierTip +
+    delivery -
+    (isCredits ? credits : 0)
+  ).toFixed(2);
 
   const toggleIsCredits = () => {
     setIsCredits((prev) => !prev);
   };
 
+  useEffect(() => {
+
+    toast.dismiss(); 
+    
+}, []);
+
   const handleOrder = () => {
     // temporary user success
     console.log(courierTip, total, orders);
-    window.alert('order sent!');
+    toast.success('Your order is on the way!');
   };
 
   const isOrderEmpty = !orders || orders.length === 0;

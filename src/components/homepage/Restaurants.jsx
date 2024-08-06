@@ -1,15 +1,11 @@
-import { useState } from "react";
-import Restaurant from "./Restaurant";
-import { useRouteLoaderData } from 'react-router-dom';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Search from "../Search/Search";
-import NoSearchResults from "../Search/NoSearchResults";
-const Restaurants = () => {
-  const [filter, setFilter] = useState("");
-  const [activeCategory, setActiveCategory] = useState("");
+import Restaurant from './Restaurant';
+
+const Restaurants = ({ menu }) => {
+  const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  const menu = useRouteLoaderData('menu');
+  const itemsPerPage = 10;
 
   // eslint-disable-next-line
   const { pagination, ...restMenus } = menu || {};
@@ -100,6 +96,52 @@ const Restaurants = () => {
           </section>
         </InfiniteScroll>
       )}
+      <div className='flex gap-2 max-w-full overflow-scroll no-scrollbar'>
+        <button
+          className={`w-max ${
+            !activeCategory
+              ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
+              : 'border-disabled  '
+          }`}
+          onClick={() => handleCategoryClick('')}
+        >
+          All
+        </button>
+        {allCategories.map((category) => {
+          const isActive = category === activeCategory;
+          return (
+            <button
+              key={category}
+              className={`w-max text-nowrap transition-all  ${
+                isActive
+                  ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
+                  : 'border-grey '
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category.charAt(0).toUpperCase() +
+                category.slice(1, category.length)}
+            </button>
+          );
+        })}
+      </div>
+      <InfiniteScroll
+        dataLength={visibleRestaurants.length}
+        next={fetchMoreData}
+        hasMore={visibleRestaurants.length < displayedMenu.length}
+        loader={<h3>Loading... </h3>}
+        endMessage={
+          <p className='text-center'>
+            <b>No more restaurants</b>
+          </p>
+        }
+      >
+        <section className='md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center mx-auto w-full overflow-hidden'>
+          {visibleRestaurants.map((restaurant) => (
+            <Restaurant key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </section>
+      </InfiniteScroll>
     </>
   );
 };
