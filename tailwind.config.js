@@ -32,7 +32,10 @@ export default {
         high: '1010',
       },
       boxShadow: {
-        "card-shadow":"0px 0px 36px 0px rgba(0, 0, 0, 0.04)",
+        "card-shadow": "0px 0px 36px 0px rgba(0, 0, 0, 0.04)",
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(0deg, #ECECEC 0%, #ECECEC 100%), #ECECEC',
       },
       keyframes: {
         'accordion-down': {

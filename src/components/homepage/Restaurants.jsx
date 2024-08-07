@@ -10,7 +10,7 @@ const Restaurants = ({ menu }) => {
   const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
 
   // eslint-disable-next-line
@@ -61,10 +61,10 @@ const Restaurants = ({ menu }) => {
 
   return (
     <>
-      <section className='md:flex   gap-48'>
+      <section className='md:grid  grid-cols-12 grid-rows-2  space-y-4 gap-8 w-full '>
         <Search value={filter} onChange={updateFilter} />
         {!filter && (
-          <div className='flex items-center  gap-2 lg:gap-4 max-w-full  m-auto  overflow-scroll no-scrollbar'>
+          <div className=' row-start-1 md:col-start-1 md:col-end-13 flex items-center  lg:gap-6 gap-4 max-w-full  m-auto  overflow-scroll no-scrollbar'>
 
             <button
               className={`w-max font-work-sans font-medium text-base text-grey ${!activeCategory
@@ -92,9 +92,9 @@ const Restaurants = ({ menu }) => {
             })}
           </div>
         )}
+        <h3 className='text-2xl row-start-2 md:col-start-1 md:col-end-3 text-nowrap text-black font-work-sans font-semibold tracking-tight'>      Discover tasty restaurants!
+        </h3 >
       </section>
-      <h3 className='text-2xl'>      Discover tasty restaurants!
-</h3 >
       {filteredRestaurants.length === 0 ? (
         <NoSearchResults />
       ) : (
@@ -105,7 +105,7 @@ const Restaurants = ({ menu }) => {
           loader={<h3>Loading... </h3>}
           endMessage={<p className="text-center"><b>No more restaurants</b></p>}
         >
-          <section className="md:grid  md:grid-cols-3 2xl:grid-cols-4  gap-6 place-items-center m-auto w-full">
+          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6 place-items-center md:place-items-start m-auto w-full">
             {visibleRestaurants.map((restaurant) => (
               <Restaurant key={restaurant.id} restaurant={restaurant} />
             ))}

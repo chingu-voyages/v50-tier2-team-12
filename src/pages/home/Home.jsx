@@ -6,10 +6,9 @@ import HomeSkeleton from '../../components/skeletons/HomeSkeleton';
 
 export default function HomePage() {
   const { data } = useRouteLoaderData('menu');
- 
+
   return (
-    <section className='space-y-6 mt-7'>
-      <h2 className='font-semibold text-2xl'>GourmetGo</h2>
+    <section className='space-y-6 mt-7 px-6 md:px-16'>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
           {(restaurants) => <Restaurants menu={restaurants} />}
