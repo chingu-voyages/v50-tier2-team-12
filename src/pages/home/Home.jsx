@@ -8,7 +8,7 @@ export default function HomePage() {
   const { data } = useRouteLoaderData('menu');
 
   return (
-    <section className='space-y-6 mt-7 px-6 md:px-16'>
+    <section className='space-y-6 mt-7 px-6'>
       <Suspense fallback={<HomeSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
           {(restaurants) => <Restaurants menu={restaurants} />}
