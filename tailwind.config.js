@@ -15,6 +15,8 @@ export default {
         disabled: '#919191',
         'light-violet': '#F7EFFF',
         'light-grey': '#f7f7f7',
+        'dark-violet': '#542E96',
+        'hover-violet': '#9767E8',
       },
       width: {
         17: '71px',
@@ -22,14 +24,25 @@ export default {
       borderWidth: {
         1: '1.41px',
       },
+      padding: {
+        17: '4.5rem',
+      },
       borderRadius: {
         '5p': '5.62px',
       },
-      minHeight: {
-        view: 'calc(100vh-10rem)',
-      },
       zIndex: {
         high: '1010',
+      },
+      height: { cta: '3.4375rem' },
+      boxShadow: {
+        big: '0px 0px 36px rgba(0,0,0,0.04)',
+        small: '0px -1px 36px rgba(0,0,0,0.04)',
+      },
+      backgroundImage: {
+        tree: 'url("./assets/tree.webp")',
+      },
+      backgroundSize: {
+        sm: '20px',
       },
       keyframes: {
         'accordion-down': {
