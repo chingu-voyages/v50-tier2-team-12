@@ -19,7 +19,7 @@ export default function MainHeader() {
     setOrderLength(totalQuantity);
   }, [orders]);
   return (
-    <header className='fixed bottom-0 w-full py-2 px-5 md:static shadow-small md:shadow-big md:flex md:items-center md:justify-between bg-white z-high md:py-5 md:px-17'>
+    <header className='fixed bottom-0 w-full py-2 px-5 md:static shadow-small md:shadow-big md:flex md:items-center md:gap-20 lg:gap-28 bg-white z-high md:py-5 md:px-17'>
       <Link
         to={'/'}
         aria-label='page logo'
@@ -32,15 +32,6 @@ export default function MainHeader() {
           <NavItem key={navItem.title} {...navItem} orderLength={orderLength} />
         ))}
       </nav>
-
-      <label className='hidden lg:flex  bg-light-grey items-center px-2 rounded-lg focus-within:outline-primary-violet  transition-all duration-200'>
-        <Icons.search className='w-6 h-6' />
-        <input
-          type='search'
-          className='w-full bg-transparent py-2 px-4 placeholder-gray-500 font-light focus:outline-none'
-          placeholder='Search for food, restaurants...'
-        />
-      </label>
     </header>
   );
 }

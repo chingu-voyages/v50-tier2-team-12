@@ -12,7 +12,7 @@ export default function MapPage() {
 
   return (
     <>
-      <PageHeading title={'restaurants near you'} />
+      <PageHeading title={'restaurants near you'} className='md:text-left' />
 
       <Suspense fallback={<MapSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>

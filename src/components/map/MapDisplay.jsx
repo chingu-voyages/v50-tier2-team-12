@@ -62,7 +62,7 @@ export default function Map({ restaurants }) {
         zoom={zoom}
         scrollWheelZoom={false}
         className={cn(
-          'w-screen min-h-[calc(100lvh-12rem)] max-w-full rounded-md'
+          'w-screen min-h-[calc(100lvh-12rem)] md:min-h-[calc(100lvh-18rem)] max-w-full rounded-md'
         )}
       >
         <ChangeMapCenter center={center} zoom={zoom} />
