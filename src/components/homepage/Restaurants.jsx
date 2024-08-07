@@ -105,7 +105,7 @@ const Restaurants = ({ menu }) => {
           loader={<h3>Loading... </h3>}
           endMessage={<p className="text-center"><b>No more restaurants</b></p>}
         >
-          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6 place-items-center md:place-items-start m-auto w-full">
+          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6 place-items-center md:place-items-start m-auto w-full overflow-hidden">
             {visibleRestaurants.map((restaurant) => (
               <Restaurant key={restaurant.id} restaurant={restaurant} />
             ))}
