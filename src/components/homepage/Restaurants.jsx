@@ -81,8 +81,8 @@ const Restaurants = ({ menu }) => {
                 <button
                   key={category}
                   className={`w-max text-nowrap  font-work-sans font-medium text-base text-grey  ${isActive
-                    ? 'text-primary-violet decoration-primary-violet decoration-2 underline underline-offset-4 font-semibold '
-                    : ''
+                    ? 'text-primary-violet text-nowrap decoration-primary-violet decoration-2 underline underline-offset-4 font-semibold '
+                    : 'text-nowrap'
                     }`}
                   onClick={() => handleCategoryClick(category)}
                 >
