@@ -6,7 +6,7 @@ const Restaurant = ({ restaurant }) => {
   };
 
   return (
-    <section className="leading-5 py-6 shadow-card-shadow" >
+    <section className="leading-5 py-6 shadow-card-shadow max-w-[382px] w-full" >
       <Link to={`/restaurants/${restaurant.name}`}>
         <LazyLoad
           height={200}
@@ -19,7 +19,7 @@ const Restaurant = ({ restaurant }) => {
             src={restaurant.img}
             loading='lazy'
             onError={handleError}
-            className='h-28 sm:w-80 w-[382px]   object-cover rounded-t-2xl  mb-3 bg-custom-gradient'
+            className='h-28 w-full  object-cover rounded-t-2xl  mb-3 bg-custom-gradient'
             alt={restaurant.name}
           />
         </LazyLoad>

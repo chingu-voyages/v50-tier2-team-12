@@ -58,7 +58,7 @@ const Restaurants = ({ menu }) => {
     restaurant.name.toLowerCase().includes(filter.toLowerCase())
   );
   const visibleRestaurants = filteredRestaurants.slice(0, currentPage * itemsPerPage);
-
+  const IsEmptySearchResult = filteredRestaurants.length === 0
   return (
     <>
       <section className='md:grid  grid-cols-12 grid-rows-2  space-y-4 gap-8 w-full '>
@@ -95,9 +95,12 @@ const Restaurants = ({ menu }) => {
         <h3 className='text-2xl row-start-2 md:col-start-1 md:col-end-3 text-nowrap text-black font-work-sans font-semibold tracking-tight'>      Discover tasty restaurants!
         </h3 >
       </section>
-      {filteredRestaurants.length === 0 ? (
-        <NoSearchResults />
-      ) : (
+      {IsEmptySearchResult ?
+        <>
+          <NoSearchResults />
+          <TryTastyRestaurants restaurants={displayedMenu.slice(0, 10)} />
+        </>
+        :
         <InfiniteScroll
           dataLength={visibleRestaurants.length}
           next={fetchMoreData}
@@ -105,16 +108,30 @@ const Restaurants = ({ menu }) => {
           loader={<h3>Loading... </h3>}
           endMessage={<p className="text-center"><b>No more restaurants</b></p>}
         >
-          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-6 place-items-center md:place-items-start m-auto w-full overflow-hidden">
+          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8 place-items-center md:place-content-between  w-full overflow-hidden">
             {visibleRestaurants.map((restaurant) => (
               <Restaurant key={restaurant.id} restaurant={restaurant} />
             ))}
           </section>
         </InfiniteScroll>
-      )}
 
+      }
     </>
   );
 };
+const TryTastyRestaurants = ({ restaurants }) => {
 
+  return (
+
+    <section className='hidden md:block'>
+      <h3 className='text-2xl row-start-2 md:col-start-1 md:col-end-3 text-nowrap text-black font-work-sans font-semibold tracking-tight'>  Try something from out tasty restaurants!</h3>
+      <div className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8 place-items-center md:place-content-between  w-full overflow-hidden">
+        {restaurants.map((restaurant) => (
+          <Restaurant key={restaurant.id} restaurant={restaurant} />
+        ))}
+      </div>
+    </section>
+
+  )
+}
 export default Restaurants;
