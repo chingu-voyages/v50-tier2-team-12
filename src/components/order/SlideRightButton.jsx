@@ -11,8 +11,7 @@ export default function SlideRightButton({ handleSubmit }) {
   return (
     <button
       {...handlers}
-      onClick={handleSubmit}
-      className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg relative'
+      className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap active:bg-dark-violet justify-center rounded-lg relative md:hidden'
     >
       <Icons.chevronsRight
         className={'animate-pulse absolute top-1/2 -translate-y-1/2 left-2'}

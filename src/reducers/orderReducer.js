@@ -71,6 +71,10 @@ export default function orderReducer(state, action) {
       return [...state];
     }
 
+    case 'CLEAR': {
+      return [];
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

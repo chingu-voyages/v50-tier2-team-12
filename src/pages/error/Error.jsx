@@ -2,7 +2,7 @@ import smile from '../../assets/sweat-smile-emoji.webp';
 
 export default function Error() {
   return (
-    <div className='flex flex-col items-center justify-center gap-7 min-h-svh max-w-[44.1875rem] mx-auto md:gap-12'>
+    <div className='flex flex-col items-center justify-center gap-7 min-h-svh max-w-[44.1875rem] mx-auto md:gap-12 md:px-17'>
       <h1 className='text-6xl font-semibold mb-5 md:text-7xl lg:text-[5.25rem] '>
         Oops!
       </h1>
