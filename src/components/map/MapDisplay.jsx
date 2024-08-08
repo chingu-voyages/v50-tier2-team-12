@@ -48,7 +48,7 @@ export default function Map({ restaurants }) {
   }, []);
 
   return (
-    <>
+    <div className='w-full md:px-17'>
       <DropDown
         value={filter}
         handleChange={updateFilter}
@@ -94,7 +94,7 @@ export default function Map({ restaurants }) {
           })}
         </MarkerClusterGroup>
       </MapContainer>
-    </>
+    </div>
   );
 }
 
