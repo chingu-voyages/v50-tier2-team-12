@@ -61,7 +61,9 @@ export default function Map({ restaurants }) {
         center={center}
         zoom={zoom}
         scrollWheelZoom={false}
-        className={cn('w-screen min-h-view h-[70vh] max-w-full rounded-md')}
+        className={cn(
+          'w-screen min-h-[calc(100lvh-12rem)] md:min-h-[calc(100lvh-18rem)] max-w-full rounded-md'
+        )}
       >
         <ChangeMapCenter center={center} zoom={zoom} />
         <TileLayer

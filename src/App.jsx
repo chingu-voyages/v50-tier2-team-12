@@ -1,8 +1,8 @@
-import { Outlet } from 'react-router-dom';
-import MobileNavbar from './components/navigation/MobileNavbar';
-import { Footer } from './components/Footer';
-import CustomToaster from './components/toaster/CustomToaster';
 import { useEffect, useState } from 'react';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
+import { Footer } from './components/Footer';
+import MainHeader from './components/navigation/MainHeader';
+import CustomToaster from './components/toaster/CustomToaster';
 
 function App() {
   const [credits, setCredits] = useState(() => {
@@ -19,11 +19,10 @@ function App() {
 
   return (
     <>
-      <header>
-        <CustomToaster />
-        <MobileNavbar />
-      </header>
-      <main className='px-5 pt-5 flex-grow'>
+      <ScrollRestoration />
+      <CustomToaster />
+      <MainHeader />
+      <main className='px-7 pt-5 flex-grow md:px-17'>
         <Outlet context={{ credits, setCredits, isCredits, setIsCredits }} />
       </main>
       <Footer />

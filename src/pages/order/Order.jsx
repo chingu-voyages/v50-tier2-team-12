@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useOutletContext } from 'react-router-dom';
 import PageHeading from '../../components/headings/PageHeading';
 import CourierTipModal from '../../components/modals/CourierTipModal';
 import CourierTips from '../../components/order/CourierTip';
@@ -8,8 +10,6 @@ import OrderList from '../../components/order/OrderList';
 import OrderSummary from '../../components/order/OrderSummary';
 import SlideRightButton from '../../components/order/SlideRightButton';
 import { useOrder } from '../../contexts/OrderContext';
-import toast from 'react-hot-toast';
-import { useOutletContext } from 'react-router-dom';
 
 export default function OrderPage() {
   const [orders] = useOrder();
@@ -38,10 +38,8 @@ export default function OrderPage() {
   };
 
   useEffect(() => {
-
-    toast.dismiss(); 
-    
-}, []);
+    toast.dismiss();
+  }, []);
 
   const handleOrder = () => {
     // temporary user success
@@ -53,7 +51,10 @@ export default function OrderPage() {
 
   return (
     <>
-      <PageHeading title={'your order'} />
+      <PageHeading
+        title={'your order'}
+        className={isOrderEmpty && 'md:hidden'}
+      />
       {isOrderEmpty ? (
         <EmptyOrder />
       ) : (

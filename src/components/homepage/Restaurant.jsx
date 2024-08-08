@@ -19,7 +19,7 @@ const Restaurant = ({ restaurant }) => {
             src={restaurant.img}
             loading='lazy'
             onError={handleError}
-            className='h-28 sm:w-80 w-[382px]   object-cover rounded-t-2xl bg-light-grey mb-3 bg-custom-gradient'
+            className='h-28 sm:w-80 w-[382px]   object-cover rounded-t-2xl  mb-3 bg-custom-gradient'
             alt={restaurant.name}
           />
         </LazyLoad>
