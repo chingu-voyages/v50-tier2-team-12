@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useOutletContext } from 'react-router-dom';
 import PageHeading from '../../components/headings/PageHeading';
-import CourierTipModal from '../../components/modals/CourierTipModal';
 import CourierTips from '../../components/order/CourierTip';
 import Credits from '../../components/order/Credits';
 import EmptyOrder from '../../components/order/EmptyOrder';
@@ -13,11 +12,11 @@ import { cn } from '../../utils/utils';
 
 export default function OrderPage() {
   const [orders, dispatchOrder] = useOrder();
-  const [courierTip, setCourierTip] = useState(0);
+
+  const savedTip = localStorage.getItem('courier-tip') || 0;
+  const [courierTip, setCourierTip] = useState(+savedTip);
 
   const { credits, isCredits, setIsCredits } = useOutletContext();
-
-  const [isTipModalOpen, setIsTipModalOpen] = useState(false);
 
   const delivery = 0;
 
@@ -106,7 +105,6 @@ export default function OrderPage() {
             <OrderList orders={orders} />
             <CourierTips
               setCourierTip={setCourierTip}
-              setIsTipModalOpen={setIsTipModalOpen}
               courierTip={courierTip}
             />
             <Credits
@@ -124,12 +122,6 @@ export default function OrderPage() {
             isCredits={isCredits}
             total={total}
             handleOrder={handleOrder}
-          />
-
-          <CourierTipModal
-            isOpen={isTipModalOpen}
-            setCourierTip={setCourierTip}
-            setIsOpen={setIsTipModalOpen}
           />
         </div>
       )}

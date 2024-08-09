@@ -109,10 +109,7 @@ function OrderItem({
             <Icons.plus className='w-3 h-3' />
           </button>
         </div>
-        <p className='font-medium text-xl space-x-3'>
-          <span>{quantity > 1 ? `x${quantity}` : ''}</span>
-          <span>${price}</span>
-        </p>
+        <p className='font-medium text-xl'>${price}</p>
       </div>
     </article>
   );

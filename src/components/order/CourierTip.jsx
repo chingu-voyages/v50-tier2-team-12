@@ -1,13 +1,14 @@
+import { useState } from 'react';
 import { cn } from '../../utils/utils';
 import { Icons } from '../Icons';
+import CourierTipModal from '../modals/CourierTipModal';
 
-export default function CourierTips({
-  setCourierTip,
-  setIsTipModalOpen,
-  courierTip,
-}) {
+export default function CourierTips({ setCourierTip, courierTip }) {
+  const [isTipModalOpen, setIsTipModalOpen] = useState(false);
+
   const selectTip = (value) => {
     setCourierTip(value);
+    localStorage.setItem('courier-tip', value);
   };
 
   const handleOpenTipModal = () => {
@@ -51,6 +52,11 @@ export default function CourierTips({
           </button>
         </div>
       </div>
+      <CourierTipModal
+        isOpen={isTipModalOpen}
+        setCourierTip={selectTip}
+        setIsOpen={setIsTipModalOpen}
+      />
     </section>
   );
 }
