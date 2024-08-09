@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import tree from '../../assets/tree.webp';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { cn } from '../../utils/utils';
 import PageHeading from '../headings/PageHeading';
 import { Icons } from '../Icons';
@@ -11,13 +12,16 @@ export default function EmptyOrder() {
   const handleCloseButtonClick = () => {
     navigate('/');
   };
+
+  const isNotMobileDevice = useMediaQuery('(min-width: 768px)');
+
   return (
     <>
       <Content className='min-h-[calc(100lvh-12rem)] md:hidden' />
 
       <ModalWrapper
-        isDialogOpen={true}
-        className='hidden md:block lg:max-w-[25rem] outline-none'
+        isDialogOpen={isNotMobileDevice}
+        className=' overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar'
         showCancel={false}
         showConfirm={false}
       >
@@ -44,7 +48,9 @@ function Content({ className = '' }) {
       )}
     >
       <h3 className='bg-light-violet rounded-2xl p-6 font-medium w-full text-xl'>
-        It looks like you haven&#39;t ordered anything yet!
+        <span className='block md:max-w-[20.875rem]'>
+          It looks like you haven&#39;t ordered anything yet!
+        </span>
       </h3>
 
       <img src={tree} alt='' width={221.33} height={221.33} className='block' />
