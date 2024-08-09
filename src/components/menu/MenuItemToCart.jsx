@@ -9,10 +9,10 @@ const MenuItemToCart = ({ quantity, setQuantity, handleSubmit }) => {
         <button
           type="button"
           onClick={() => {
-            quantity > 0 && setQuantity(quantity - 1)
+            quantity > 1 && setQuantity(quantity - 1)
           }}
           className="bg-purple-100 rounded-l-lg px-5 h-11"
-          disabled={quantity === 0}
+          disabled={quantity === 1}
         >
           <Icons.minus className="w-4 h-4" />
         </button>
@@ -32,8 +32,7 @@ const MenuItemToCart = ({ quantity, setQuantity, handleSubmit }) => {
       <div>
         <button
           type="submit"
-          className={`bg-${quantity === 0 ? 'disabled' : 'primary-violet'} text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg`}
-          disabled={quantity === 0}
+          className="bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg"
         >
           Add to Order
         </button>

@@ -84,10 +84,9 @@ function OrderItem({ name, price, dsc, quantity, id, removeOrder, increaseQuanti
       </div>
 
       </div>
-      <div className='flex justify-between items-end'>
+      <div className='flex justify-between items-center'>
         <p className='max-w-48 text-grey'>{dsc}</p>
         <p className='font-medium text-xl space-x-3'>
-          <span>{quantity > 1 ? `x${quantity}` : ''}</span>
           <span>${price}</span>
         </p>
       </div>

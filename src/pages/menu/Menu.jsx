@@ -9,8 +9,8 @@ export default function Menu() {
   const { data } = useRouteLoaderData('menu');
   const { name } = useParams();
   return (
-    <div className='max-w-md mx-auto'>
-      <PageHeading title={`${name}`} />
+    <div className='md:w-full'>
+      <PageHeading title={`${name}`} className='md:hidden'/>
 
       <Suspense fallback={<RestaurantSkeleton />}>
         <Await resolve={data}>
