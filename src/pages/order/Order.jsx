@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import PageHeading from '../../components/headings/PageHeading';
 import CourierTips from '../../components/order/CourierTip';
 import Credits from '../../components/order/Credits';
@@ -11,6 +11,8 @@ import { useOrder } from '../../contexts/OrderContext';
 import { cn } from '../../utils/utils';
 
 export default function OrderPage() {
+  const navigate = useNavigate();
+
   const [orders, dispatchOrder] = useOrder();
 
   const savedTip = localStorage.getItem('courier-tip') || 0;
@@ -43,14 +45,10 @@ export default function OrderPage() {
   const handleOrder = () => {
     //handle payments
 
-    toast.success('Your order is on the way!');
-
     // clear order items after successfully processing order
     dispatchOrder({ type: 'CLEAR' });
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    toast.success('Your order is on the way!');
+    navigate('/');
   };
 
   const isOrderEmpty = !orders || orders.length === 0;
