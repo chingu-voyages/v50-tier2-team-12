@@ -38,7 +38,7 @@ export default function ItemDetails() {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAddToOrder();
-    navigate('/');
+    goBack()
   };
 
   if (!menuItemData) {
