@@ -22,7 +22,7 @@ function App() {
       <ScrollRestoration />
       <CustomToaster />
       <MainHeader />
-      <main className='px-7 pt-5 flex-grow md:px-0'>
+      <main className='px-7 pt-5 flex-grow md:px-0 md:pt-0'>
         <Outlet context={{ credits, setCredits, isCredits, setIsCredits }} />
       </main>
       <Footer />

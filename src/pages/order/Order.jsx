@@ -58,7 +58,7 @@ export default function OrderPage() {
       <PageHeading
         title={'your order'}
         className={cn(
-          'md:h-36 xl:h-[195px] overflow-hidden relative md:flex md:flex-col md:text-left md:justify-end md:bg-light-violet md:pb-10 md:mb-0',
+          'md:h-36 xl:h-[195px] overflow-hidden relative md:flex md:flex-col md:text-left md:justify-end md:bg-light-violet md:pb-10 md:mb-0 md:mt-0',
           isOrderEmpty && 'md:hidden'
         )}
       >
