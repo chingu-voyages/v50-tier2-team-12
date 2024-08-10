@@ -28,11 +28,8 @@ export function removeDuplicates(items, filterKey) {
 
 export const moveBestFoodsToSecond = (categories) => {
   const bestFoodsIndex = categories.indexOf("best-foods");
-
   if (bestFoodsIndex !== -1) {
     const bestFoods = categories.splice(bestFoodsIndex, 1)[0];
-
-    
     categories.splice(0, 0, bestFoods);
   }
   return categories;
