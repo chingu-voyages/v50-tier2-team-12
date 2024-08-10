@@ -31,7 +31,7 @@ export default function Credits({
       <div>
         <button
           onClick={handleOpenAddCreditsModal}
-          className='w-full bg-primary-violet text-white rounded-lg p-3 h-11'
+          className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg'
         >
           Add more credits
         </button>
