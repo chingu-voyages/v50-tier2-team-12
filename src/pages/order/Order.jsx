@@ -112,7 +112,7 @@ export default function OrderPage() {
             />
           </div>
 
-          <div className='md:bg-light-grey lg:grid lg:place-items-center w-full md:px-17 lg:p-0 lg:max-h-[50rem]'>
+          <div className='lg:bg-light-grey lg:grid lg:place-items-center w-full md:px-17 lg:p-0 lg:max-h-[50rem]'>
             <OrderSummary
               subtotal={subtotal}
               credits={credits}
