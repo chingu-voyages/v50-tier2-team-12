@@ -20,7 +20,7 @@ export default function CourierTips({ setCourierTip, courierTip }) {
       <h3 className='font-semibold text-xl md:text-2xl mb-2'>
         Add courier tip
       </h3>
-      <div className='md:border-2 md:border-light-grey md:rounded-2xl md:px-6 md:py-8'>
+      <div className='md:border-2 md:border-light-grey md:rounded-2xl md:px-6 md:py-8 mb-14'>
         <div className='md:flex md:items-center md:gap-4'>
           <p className='text-grey w-full'>
             The tip would go directly to the courier salary
@@ -44,19 +44,23 @@ export default function CourierTips({ setCourierTip, courierTip }) {
           })}
           <button
             type='button'
-            className='border-1 border-disabled active:border-primary-violet active:text-primary-violet hover:opacity-50 rounded-3xl px-4 py-2 w-17 h-10 flex justify-center items-center'
+            className={cn(
+              'border-1 border-disabled active:border-primary-violet active:text-primary-violet hover:border-hover-violet rounded-3xl px-4 py-2 w-17 h-10 flex justify-center items-center',
+              isTipModalOpen && 'border-primary-violet group'
+            )}
             aria-label='enter tip amount manually'
             onClick={handleOpenTipModal}
           >
-            <Icons.tip />
+            <Icons.tip className={cn(isTipModalOpen ? 'active-link' : '')} />
           </button>
         </div>
+
+        <CourierTipModal
+          isOpen={isTipModalOpen}
+          setCourierTip={selectTip}
+          setIsOpen={setIsTipModalOpen}
+        />
       </div>
-      <CourierTipModal
-        isOpen={isTipModalOpen}
-        setCourierTip={selectTip}
-        setIsOpen={setIsTipModalOpen}
-      />
     </section>
   );
 }

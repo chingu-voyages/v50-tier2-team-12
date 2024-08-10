@@ -98,8 +98,8 @@ export default function OrderPage() {
       {isOrderEmpty ? (
         <EmptyOrder />
       ) : (
-        <div className='w-full lg:flex md:gap-20 xl:gap-56 overflow-hidden md:px-17 md:pt-14'>
-          <div className='w-full max-w-[31.625rem]'>
+        <div className='w-full lg:grid lg:grid-cols-2 md:gap-10 overflow-hidden'>
+          <div className='w-full max-w-[31.625rem] md:pt-14 md:pl-17'>
             <OrderList orders={orders} />
             <CourierTips
               setCourierTip={setCourierTip}
@@ -112,15 +112,17 @@ export default function OrderPage() {
             />
           </div>
 
-          <OrderSummary
-            subtotal={subtotal}
-            credits={credits}
-            courierTip={courierTip}
-            delivery={delivery}
-            isCredits={isCredits}
-            total={total}
-            handleOrder={handleOrder}
-          />
+          <div className='md:bg-light-grey lg:grid lg:place-items-center w-full md:px-17 lg:p-0 lg:max-h-[50rem]'>
+            <OrderSummary
+              subtotal={subtotal}
+              credits={credits}
+              courierTip={courierTip}
+              delivery={delivery}
+              isCredits={isCredits}
+              total={total}
+              handleOrder={handleOrder}
+            />
+          </div>
         </div>
       )}
     </>

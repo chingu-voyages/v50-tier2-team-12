@@ -32,7 +32,7 @@ export default function OrderSummary({
   ];
 
   return (
-    <section className='my-12 bg-white md:max-w-[26.875rem] w-full lg:rounded-3xl lg:shadow-card-shadow lg:px-6 lg:pt-8 '>
+    <section className='my-12 bg-white md:max-w-[26.875rem] w-full lg:rounded-3xl lg:shadow-card-shadow lg:px-6 lg:pt-8'>
       <h3 className='font-semibold text-2xl text-center capitalize hidden lg:block'>
         order details
       </h3>
