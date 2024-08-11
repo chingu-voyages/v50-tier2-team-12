@@ -21,7 +21,7 @@ export default function EmptyOrder() {
 
       <ModalWrapper
         isDialogOpen={isNotMobileDevice}
-        className=' overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-96'
+        className=' overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-[35rem]'
         showCancel={false}
         showConfirm={false}
       >

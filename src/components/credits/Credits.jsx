@@ -47,7 +47,7 @@ export default function Credits() {
   return (
     <section className='flex flex-col mt-8 min-h-[calc(100lvh-12rem)] md:min-h-[40.9375rem]'>
       <button
-        className='absolute right-8 top-8 group outline-none'
+        className='absolute right-8 top-8 group outline-none hidden md:block'
         onClick={handleCloseButtonClick}
         aria-label='close'
       >

@@ -69,7 +69,7 @@ export default function ItemDetails() {
       {/* Modal for larger screens */}
       <DetailsModalWrapper
         isDialogOpen={isNotMobileDevice}
-        className='overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-96'
+        className='overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-[41rem]'
         showCancel={false}
         showConfirm={false}
       >
@@ -80,7 +80,7 @@ export default function ItemDetails() {
         >
           <Icons.close className='group-hover:active-link' />
         </button>
-        <PageHeading title={'product details'} />
+        <PageHeading title={'product details'} className='md:p-0' />
         <Content
           menuItemData={menuItemData}
           quantity={quantity}
