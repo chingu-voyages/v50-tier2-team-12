@@ -1,31 +1,13 @@
-import PageHeading from '../../components/headings/PageHeading';
 import Credits from '../../components/credits/Credits';
-import AddCreditsModal from '../../components/modals/AddCreditsModal';
-import { useOutletContext } from 'react-router-dom';
-import { useState } from 'react';
+import PageHeading from '../../components/headings/PageHeading';
 
 export default function CreditsPage() {
-  const { credits, setCredits, isCredits, setIsCredits } = useOutletContext();
-  const [isAddCreditsModalOpen, setIsAddCreditsModalOpen] = useState(false);
-
-  const toggleIsCredits = () => {
-    setIsCredits((prev) => !prev);
-  };
-
   return (
-    <div className='h-[calc(100vh-75px)] flex flex-col'>
-      <PageHeading title={'credits'} />
-      <Credits
-        credits={credits}
-        isCredits={isCredits}
-        toggleIsCredits={toggleIsCredits}
-        setIsAddCreditsModalOpen={setIsAddCreditsModalOpen}
-      />
-      <AddCreditsModal
-        isOpen={isAddCreditsModalOpen}
-        setCredits={setCredits}
-        setIsOpen={setIsAddCreditsModalOpen}
-      />
+    <div className='md:bg-light-grey border border-light-grey min-h-[calc(100lvh-12rem)] md:flex md:flex-col md:justify-center md:items-center'>
+      <div className='bg-white md:rounded-3xl md:max-w-[32.25rem] md:mx-auto w-full md:shadow-card-shadow md:p-10 relative'>
+        <PageHeading title={'credits'} className='md:p-0' />
+        <Credits />
+      </div>
     </div>
   );
 }
