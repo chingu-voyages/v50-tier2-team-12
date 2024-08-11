@@ -17,6 +17,7 @@ export default {
         'light-grey': '#f7f7f7',
         'dark-violet': '#542E96',
         'hover-violet': '#9767E8',
+        gold: '#FFC450',
       },
       width: {
         17: '71px',
