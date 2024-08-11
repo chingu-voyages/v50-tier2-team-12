@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import tree from '../../assets/tree.webp';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { cn } from '../../utils/utils';
-import PageHeading from '../headings/PageHeading';
 import { Icons } from '../Icons';
 import ModalWrapper from '../modals/ModalWrapper';
 
@@ -26,13 +25,19 @@ export default function EmptyOrder() {
         showConfirm={false}
       >
         <button
-          className='absolute right-8 top-8 group'
+          className='absolute right-8 top-8 group outline-none'
           onClick={handleCloseButtonClick}
           aria-label='close'
         >
-          <Icons.close className='group-hover:active-link' />
+          <Icons.close className='group-hover:active-link group-focus-visible:outline-primary-violet' />
         </button>
-        <PageHeading title={'your order'} />
+        <h2
+          className={
+            'capitalize font-semibold text-2xl md:text-[2rem] text-black text-nowrap text-center mt-7 mb-6'
+          }
+        >
+          your order
+        </h2>
         <Content />
       </ModalWrapper>
     </>
