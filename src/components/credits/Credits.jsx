@@ -45,7 +45,7 @@ export default function Credits() {
   };
 
   return (
-    <section className='flex flex-col mt-8 min-h-[calc(100lvh-12rem)] md:min-h-[40.9375rem]'>
+    <section className='flex flex-col mt-8 min-h-[calc(100lvh-12rem)] md:min-h-fit'>
       <button
         className='absolute right-8 top-8 group outline-none hidden md:block'
         onClick={handleCloseButtonClick}
@@ -90,7 +90,7 @@ export default function Credits() {
 
       <button
         onClick={handleAddCreditsButtonClick}
-        className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg mt-auto md:disabled:bg-[#6A6A6A]'
+        className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:bg-hover-violet justify-center rounded-lg mt-auto md:disabled:bg-[#6A6A6A] active:bg-dark-violet md:mt-28'
         disabled={isNotMobileDevice && !creditAmount}
       >
         {isNotMobileDevice ? 'Add Credits' : 'Add more credits'}
