@@ -42,9 +42,7 @@ export default function OrderPage() {
   }, []);
 
   const handleOrder = () => {
-    // temporary user success
-    console.log(courierTip, total, orders);
-    if (total < 0) {
+    if (total <= 0) {
       toast.success('Your order is on the way!');
       setCredits(credits - subtotal - courierTip - delivery);
     } else toast.error('Not enough credits!');
@@ -84,7 +82,7 @@ export default function OrderPage() {
 
           <p className='font-bold text-2xl flex items-center justify-between my-7'>
             <span className='capitalize'>total</span>
-            <span>${total < 0 ? '0' : total}</span>
+            <span>${total < 0 ? '0.00' : total}</span>
           </p>
 
           <SlideRightButton handleSubmit={handleOrder} />
