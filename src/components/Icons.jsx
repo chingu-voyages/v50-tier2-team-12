@@ -322,4 +322,18 @@ export const Icons = {
       />
     </svg>
   ),
+  star:  (props) => (
+    <svg
+      width='13'
+      height='12'
+      viewBox='0 0 13 12'
+      fill="currentColor"
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        d='M6.5 9.64421L10.517 12L9.451 7.56L13 4.57263L8.3265 4.18737L6.5 0L4.6735 4.18737L0 4.57263L3.549 7.56L2.483 12L6.5 9.64421Z'
+      />
+    </svg>
+  ),
 };
