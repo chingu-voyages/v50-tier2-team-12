@@ -10,7 +10,7 @@ export default function MenuItemDetails() {
 
   return (
     <div className='h-[calc(100vh-75px)] flex flex-col'>
-      <PageHeading title={'product details'} />
+      <PageHeading title={'product details'} className='md:hidden'/>
 
       <Suspense fallback={<MenuSkeleton />}>
         <Await resolve={data} errorElement={<DataError />}>
