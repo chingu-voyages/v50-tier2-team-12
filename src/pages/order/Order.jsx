@@ -81,7 +81,7 @@ export default function OrderPage() {
 
           <p className='font-bold text-2xl flex items-center justify-between my-7'>
             <span className='capitalize'>total</span>
-            <span>${total}</span>
+            <span>${total < 0 ? '0' : total}</span>
           </p>
 
           <SlideRightButton handleSubmit={handleOrder} />

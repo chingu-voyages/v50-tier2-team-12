@@ -5,6 +5,10 @@ export default function OrderSummary({
   delivery,
   isCredits,
 }) {
+  const total = subtotal + courierTip + delivery;
+  const hasSufficientCredits = credits >= subtotal + courierTip + delivery;
+  if (isCredits && hasSufficientCredits) credits = total;
+
   const summaryItems = [
     {
       title: 'subtotal',
