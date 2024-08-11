@@ -15,7 +15,7 @@ export default function OrderPage() {
   const [orders] = useOrder();
   const [courierTip, setCourierTip] = useState(0);
 
-  const { credits, isCredits, setIsCredits } = useOutletContext();
+  const { credits, setCredits, isCredits, setIsCredits } = useOutletContext();
 
   const [isTipModalOpen, setIsTipModalOpen] = useState(false);
 
@@ -44,7 +44,10 @@ export default function OrderPage() {
   const handleOrder = () => {
     // temporary user success
     console.log(courierTip, total, orders);
-    toast.success('Your order is on the way!');
+    if (total < 0) {
+      toast.success('Your order is on the way!');
+      setCredits(credits - subtotal - courierTip - delivery);
+    } else toast.error('Not enough credits!');
   };
 
   const isOrderEmpty = !orders || orders.length === 0;
