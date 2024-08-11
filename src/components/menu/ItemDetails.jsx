@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { Navigate, useAsyncValue, useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import {
+  Navigate,
+  useAsyncValue,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { useOrder } from '../../contexts/OrderContext';
-import DetailsModalWrapper from '../modals/DetailsModalWrapper';
-import PageHeading from '../headings/PageHeading';
-import MenuItemToCart from './MenuItemToCart'
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { cn } from '../../utils/utils';
+import PageHeading from '../headings/PageHeading';
 import { Icons } from '../Icons';
-import toast from "react-hot-toast";
+import DetailsModalWrapper from '../modals/DetailsModalWrapper';
+import MenuItemToCart from './MenuItemToCart';
 
 export default function ItemDetails() {
   const { id } = useParams();
@@ -21,7 +26,6 @@ export default function ItemDetails() {
   const menuItemData = allMenus.find((item) => item.id === id);
 
   const handleAddToOrder = () => {
-    console.log('Adding ${quantity} of ${menuItemData.dsc} to order');
     dispatchOrder({
       type: 'ADD_ORDER',
       payload: {
@@ -38,34 +42,34 @@ export default function ItemDetails() {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleAddToOrder();
-    goBack()
+    goBack();
   };
+
+  const isNotMobileDevice = useMediaQuery('(min-width: 768px)');
 
   if (!menuItemData) {
     return <Navigate to={'*'} />;
   }
 
   const handleCloseButtonClick = () => {
-    goBack()
+    goBack();
   };
-
-  const isNotMobileDevice = useMediaQuery('(min-width: 768px)');
 
   return (
     <>
       {/* Content for mobile screens */}
-        <Content 
-           menuItemData={menuItemData}
-           quantity={quantity}
-           setQuantity={setQuantity}
-           handleSubmit={handleSubmit}
-          className='min-h-[calc(100vh-12rem)] md:hidden'
-        />
+      <Content
+        menuItemData={menuItemData}
+        quantity={quantity}
+        setQuantity={setQuantity}
+        handleSubmit={handleSubmit}
+        className='min-h-[calc(100vh-12rem)] md:hidden'
+      />
 
       {/* Modal for larger screens */}
       <DetailsModalWrapper
         isDialogOpen={isNotMobileDevice}
-        className='overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar'
+        className='overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-96'
         showCancel={false}
         showConfirm={false}
       >
@@ -77,7 +81,7 @@ export default function ItemDetails() {
           <Icons.close className='group-hover:active-link' />
         </button>
         <PageHeading title={'product details'} />
-        <Content 
+        <Content
           menuItemData={menuItemData}
           quantity={quantity}
           setQuantity={setQuantity}
@@ -88,9 +92,15 @@ export default function ItemDetails() {
   );
 }
 
-function Content({ menuItemData, quantity, setQuantity, handleSubmit, className = '' }) {
-  return (   
-    <div className={cn('flex flex-col', className)}> 
+function Content({
+  menuItemData,
+  quantity,
+  setQuantity,
+  handleSubmit,
+  className = '',
+}) {
+  return (
+    <div className={cn('flex flex-col', className)}>
       <div className='flex-grow md:h-auto h-screen'>
         <section className='flex flex-col gap-4 py-4 px-2'>
           <div className='w-full h-18'>
