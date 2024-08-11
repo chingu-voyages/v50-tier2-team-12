@@ -9,7 +9,7 @@ export default function Credits({
   };
 
   return (
-    <section className='flex flex-col mt-8 h-[580px]'>
+    <section className='flex flex-col mt-8 h-full'>
       <h3 className='font-medium text-xl'>Available Credits</h3>
       <div className='mt-1 bg-light-violet py-5 px-3 mb-2 rounded-2xl text-xl font-medium text-primary-violet'>
         ${credits.toFixed(2)}
@@ -27,11 +27,11 @@ export default function Credits({
           <span className="block relative w-11 h-6 bg-disabled peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-violet/30 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-violet"></span>
         </label>
       </div>
-      <div className='flex-grow'></div>
-      <div>
+      <div className='flex-grow'>{/* spacer to push button downwards */}</div>
+      <div className='py-4 px-2'>
         <button
           onClick={handleOpenAddCreditsModal}
-          className='w-full bg-primary-violet text-white rounded-lg p-3 h-11'
+          className='bg-primary-violet text-xl font-semibold text-white py-3 w-full my-3 text-center flex items-center text-nowrap hover:opacity-50 justify-center rounded-lg'
         >
           Add more credits
         </button>

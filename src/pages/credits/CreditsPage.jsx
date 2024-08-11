@@ -13,7 +13,7 @@ export default function CreditsPage() {
   };
 
   return (
-    <>
+    <div className='h-[calc(100vh-75px)] flex flex-col'>
       <PageHeading title={'credits'} />
       <Credits
         credits={credits}
@@ -26,6 +26,6 @@ export default function CreditsPage() {
         setCredits={setCredits}
         setIsOpen={setIsAddCreditsModalOpen}
       />
-    </>
+    </div>
   );
 }

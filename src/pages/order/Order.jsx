@@ -18,7 +18,7 @@ export default function OrderPage() {
   const savedTip = localStorage.getItem('courier-tip') || 0;
   const [courierTip, setCourierTip] = useState(+savedTip);
 
-  const { credits, isCredits, setIsCredits } = useOutletContext();
+  const { credits, setCredits, isCredits, setIsCredits } = useOutletContext();
 
   const delivery = 0;
 
@@ -43,12 +43,14 @@ export default function OrderPage() {
   }, []);
 
   const handleOrder = () => {
-    //handle payments
-
-    // clear order items after successfully processing order
-    dispatchOrder({ type: 'CLEAR' });
-    toast.success('Your order is on the way!');
-    navigate('/');
+    if (total <= 0) {
+      dispatchOrder({ type: 'CLEAR' });
+      toast.success('Your order is on the way!');
+      setCredits(credits - subtotal - courierTip - delivery);
+      navigate('/');
+    } else {
+      toast.error('Not enough credits!');
+    }
   };
 
   const isOrderEmpty = !orders || orders.length === 0;
