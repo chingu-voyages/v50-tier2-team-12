@@ -52,13 +52,16 @@ GourmetGo is a single-page application (SPA) that simulates a restaurant menu an
 
 ## Libraries
 
-- **React-Hot-Toast:** Provides notifications and feedback to users throughout the app.
 - **M3.Materials.io:** Used for creating and managing the application logos.
+- **React-Hot-Toast:** Provides notifications and feedback to users throughout the app.
 - **React Components for Leaflet Maps:** Used to display restaurants on an interactive map.
+- **React-Swipeable:** Used to add swipeable views for better mobile UX.
+- **React-Router-Dom:** Handles routing within the single-page application.
+- **React-LazyLoad:** Enhances performance by lazy-loading images as they enter the viewport.
 
 ## Deployment
 
-The app is deployed on Netlify. You can access it [here](https://your-netlify-deployment-url).
+The app is deployed on Netlify. You can access it [here](gourmet-go.netlify.app/).
 
 ## License
 
