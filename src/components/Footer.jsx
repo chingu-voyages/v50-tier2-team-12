@@ -4,13 +4,13 @@ import { Icons } from './Icons';
 
 export function Footer() {
   return (
-    <footer className='text-gray-400 flex justify-center mt-8 mb-24 md:mb-0'>
+    <footer className='text-gray-400 flex justify-center mb-16 p-4 md:mb-0'>
       <a
         href='https://github.com/chingu-voyages/v50-tier2-team-12'
         target='_blank'
-        className='flex items-center gap-x-1.5'
+        className='flex items-center gap-x-1.5 text-grey'
       >
-        &copy; 2024 Team 12 of Voyage 50 <Icons.github />
+        &copy; {new Date().getFullYear()} Team 12 of Voyage 50 <Icons.github />
       </a>
     </footer>
   );

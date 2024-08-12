@@ -1,10 +1,10 @@
 export default function Credits({ credits, isCredits, toggleIsCredits }) {
   return (
     <section className='my-8'>
-      <h3 className='font-medium text-xl'>Credits</h3>
+      <h3 className='font-semibold text-xl md:text-2xl mb-2'>Credits</h3>
 
-      <div className='flex justify-between items-center mt-1 bg-light-violet py-5 px-3 rounded-2xl'>
-        <p className=''>Use available credits</p>
+      <div className='flex justify-between items-center mt-1 bg-light-violet h-[67px] px-4  rounded-2xl mb-2'>
+        <p>Use available credits</p>
 
         <label className='inline-flex items-center cursor-pointer'>
           <input

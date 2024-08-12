@@ -1,88 +1,81 @@
-import { useState } from "react";
-import Restaurant from "./Restaurant";
-import { useRouteLoaderData } from 'react-router-dom';
+import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Restaurant from './Restaurant';
+import Search from '../Search/Search';
+import NoSearchResults from '../Search/NoSearchResults';
+import { moveBestFoodsToSecond, removeDuplicates } from '../../utils/utils';
+import CategoryButtons from './CategoryButtons';
+import DiscoverHeader from './DiscoverHeader';
+import TryTastyRestaurants from './TryTastyRestaurants';
 
-const Restaurants = () => {
-  const [activeCategory, setActiveCategory] = useState("");
+const Restaurants = ({ menu }) => {
+  const [activeCategory, setActiveCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  const menu = useRouteLoaderData('menu');
+  const [searchFilter, setSearchFilter] = useState("");
+  const itemsPerPage = 12;
 
   // eslint-disable-next-line
-  const { pagination, ...restMenus } = menu || {};
+  const { pagination, 'our-foods': ourFoods, ...restMenus } = menu || {};
   const allCategories = Object.keys(restMenus) || [];
+  moveBestFoodsToSecond(allCategories);
   const allMenus = Object.values(restMenus).flat();
 
-  // Get unique restaurants by their name
-  const getUniqueRestaurants = (restaurants) => {
-    const uniqueRestaurants = [];
-    const names = new Set();
-    restaurants.forEach((restaurant) => {
-      if (!names.has(restaurant.name)) {
-        names.add(restaurant.name);
-        uniqueRestaurants.push(restaurant);
-      }
-    });
-    return uniqueRestaurants;
-  };
+  const updateFilter = (value) => setSearchFilter(value);
+
+  const getUniqueRestaurants = (restaurants) => removeDuplicates(restaurants, 'name');
+
+  const fetchMoreData = () => setCurrentPage(currentPage + 1);
 
   const displayedMenu = activeCategory
     ? restMenus[activeCategory]
     : getUniqueRestaurants(allMenus);
 
+  const filteredRestaurants = displayedMenu.filter((restaurant) =>
+    restaurant.name.toLowerCase().includes(searchFilter.toLowerCase()) || restaurant.dsc.toLowerCase().includes(searchFilter.toLowerCase())
+  );
+
+  const visibleRestaurants = filteredRestaurants.slice(0, currentPage * itemsPerPage);
+
+  const isEmptySearchResult = filteredRestaurants.length === 0;
+
   const handleCategoryClick = (value) => {
     setActiveCategory(value);
-    setCurrentPage(1); // Reset page when category changes
+    setCurrentPage(1);
   };
 
-  const fetchMoreData = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const visibleRestaurants = displayedMenu.slice(0, currentPage * itemsPerPage);
 
   return (
     <>
-      <div className='flex gap-2 max-w-ful overflow-scroll no-scrollbar'>
-        <button
-          className={`w-max ${!activeCategory
-            ? 'text-primary-violet underline decoration-primary-violet underline-offset-4 font-semibold'
-            : 'border-disabled text-disabled '}`
-          }
-          onClick={() => handleCategoryClick("")}
+      <section className={`md:grid grid-cols-12 grid-rows-2 space-y-4 gap-8 w-full `}>
+        <Search value={searchFilter} onChange={updateFilter} />
+        <CategoryButtons
+          allCategories={allCategories}
+          activeCategory={activeCategory}
+          handleCategoryClick={handleCategoryClick}
+        />
+        <DiscoverHeader isEmptySearchResult={isEmptySearchResult} />
+      </section>
+
+      {isEmptySearchResult ? (
+        <>
+          <NoSearchResults />
+          <TryTastyRestaurants restaurants={displayedMenu.slice(0, 10)} />
+        </>
+      ) : (
+        <InfiniteScroll
+          dataLength={visibleRestaurants.length}
+          next={fetchMoreData}
+          hasMore={visibleRestaurants.length < filteredRestaurants.length}
+          loader={<h3>Loading... </h3>}
+          endMessage={<p className="text-center"><b>No more restaurants</b></p>}
         >
-          All
-        </button>
-        {allCategories.map((category, index) => {
-          const isActive = category === activeCategory;
-          return (
-            <button
-              key={index}
-              className={`w-max text-nowrap transition-all  ${isActive
-                ? 'text-primary-violet decoration-primary-violet animate-pulse underline underline-offset-4 font-semibold transition-all'
-                : 'border-disabled text-disabled '
-                }`}
-              onClick={() => handleCategoryClick(category)}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1, category.length)}
-            </button>
-          );
-        })}
-      </div>
-      <InfiniteScroll
-        dataLength={visibleRestaurants.length}
-        next={fetchMoreData}
-        hasMore={visibleRestaurants.length < displayedMenu.length}
-        loader={<h4>Loading... </h4>}
-        endMessage={<p style={{ textAlign: 'center' }}><b>No more restaurants</b></p>}
-      >
-        <section className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center m-auto w-full">
-          {visibleRestaurants.map((restaurant, index) => (
-            <Restaurant key={index} restaurant={restaurant} />
-          ))}
-        </section>
-      </InfiniteScroll>
+          <section className="md:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 place-items-center md:place-content-between w-full overflow-hidden">
+            {visibleRestaurants.map((restaurant) => (
+              <Restaurant key={restaurant.id} restaurant={restaurant} />
+            ))}
+          </section>
+        </InfiniteScroll>
+      )}
     </>
   );
 };
