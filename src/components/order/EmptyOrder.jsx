@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import tree from '../../assets/tree.webp';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { cn } from '../../utils/utils';
+import PageHeading from '../headings/PageHeading';
 import { Icons } from '../Icons';
 import ModalWrapper from '../modals/ModalWrapper';
 
@@ -20,7 +21,7 @@ export default function EmptyOrder() {
 
       <ModalWrapper
         isDialogOpen={isNotMobileDevice}
-        className=' overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar'
+        className=' overflow-y-scroll md:w-1/2 lg:w-2/5 xl:max-w-[32rem] outline-none no-scrollbar min-h-[35rem]'
         showCancel={false}
         showConfirm={false}
       >
@@ -31,13 +32,7 @@ export default function EmptyOrder() {
         >
           <Icons.close className='group-hover:active-link group-focus-visible:outline-primary-violet' />
         </button>
-        <h2
-          className={
-            'capitalize font-semibold text-2xl md:text-[2rem] text-black text-nowrap text-center mt-7 mb-6'
-          }
-        >
-          your order
-        </h2>
+        <PageHeading title={'your order'} className='md:p-0' />
         <Content />
       </ModalWrapper>
     </>
